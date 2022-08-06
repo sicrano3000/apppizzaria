@@ -16,21 +16,21 @@ public class EntregaTest implements ApplicationRunner {
 		System.out.println("#pedido");
 
 		Entrega e1 = new Entrega();
-		e1.endereco = "Rua A";
-		e1.tempoPreparo = 30;
-		e1.previsaoEntrega = LocalDateTime.now();
+		e1.setEndereco("Rua A");
+		e1.setTempoPreparo(30);
+		e1.setPrevisaoEntrega(LocalDateTime.now());
 		System.out.println(e1);
 
 		Entrega e2 = new Entrega();
-		e2.endereco = "Rua B";
-		e2.tempoPreparo = 80;
-		e2.previsaoEntrega = LocalDateTime.now();
+		e2.setEndereco("Rua B");
+		e2.setTempoPreparo(80);
+		e2.setPrevisaoEntrega(LocalDateTime.now());
 		System.out.println(e2);
 
 		Entrega e3 = new Entrega();
-		e3.endereco = "Rua C";
-		e3.tempoPreparo = 50;
-		e3.previsaoEntrega = LocalDateTime.now();
+		e3.setEndereco("Rua C");
+		e3.setTempoPreparo(50);
+		e3.setPrevisaoEntrega(LocalDateTime.now());
 		System.out.println(e3);
 	}
 

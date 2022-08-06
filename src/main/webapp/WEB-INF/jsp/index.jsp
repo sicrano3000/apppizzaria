@@ -14,26 +14,54 @@
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
-	        <th>Endereço</th>
-	        <th>Tempo de preparo</th>
-	        <th>Previsão de entrega</th>
+	        <th>Atributo</th>
+	        <th>Tipo</th>
+	        <th>Descrição</th>
 	      </tr>
 	    </thead>
 	    <tbody>
 	      <tr>
-	        <td>descricao</td>
-	        <td>data</td>
-	        <td>valor</td>
+	        <td>endereco</td>
+	        <td>string</td>
+	        <td>Local para ser entregue</td>
 	      </tr>
 	      <tr>
-	        <td>nome</td>
-	        <td>cpf</td>
-	        <td>email</td>
+	        <td>tempoPreparo</td>
+	        <td>integer</td>
+	        <td>Tempo em minutos necessário para preparar o pedido</td>
 	      </tr>
 	      <tr>
-	        <td>tipo</td>
+	        <td>previsaoEntrega</td>
+	        <td>localDateTime</td>
+	        <td>Horário para o pedido ser entregue</td>
+	      </tr>
+	    </tbody>
+	  </table>
+
+	  <h3>Classe: Pizza</h3>	              
+	  <table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th>Atributo</th>
+	        <th>Tipo</th>
+	        <th>Descrição</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
 	        <td>sabor</td>
-	        <td>borda</td>
+	        <td>string</td>
+	        <td>Indicativo o sabor da pizza</td>
+	      </tr>
+	      <tr>
+	        <td>valor</td>
+	        <td>double</td>
+	        <td>Valor a ser pago</td>
+	      </tr>
+	      <tr>
+	        <td>descricao</td>
+	        <td>String</td>
+	        <td>Detalhe adicional</td>
 	      </tr>
 	    </tbody>
 	  </table>
