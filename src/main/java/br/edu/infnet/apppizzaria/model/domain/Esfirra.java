@@ -6,6 +6,21 @@ public class Esfirra extends Massa {
 	private Double valor;
 	private String sabor;
 	
+	@Override
+	public String tipoBorda() {
+		if (getBorda() == "Calabresa") {
+			setBorda("Borda de calabresa com queijo");
+		}
+		
+		return getBorda();
+	}
+	
+	@Override
+	public void impressao() {
+		System.out.println("#esfirra");
+		System.out.println(this);
+	}
+	
 	public String getDescricao() {
 		return descricao;
 	}

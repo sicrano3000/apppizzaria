@@ -6,6 +6,12 @@ public class Espaguete extends Massa {
 	private Double valor;
 	private String sabor;
 	
+	@Override
+	public void impressao() {
+		System.out.println("#espaguete");
+		System.out.println(this);
+	}
+	
 	public String getDescricao() {
 		return descricao;
 	}

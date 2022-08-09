@@ -1,4 +1,4 @@
-package br.edu.infnet.apppizzaria;
+package br.edu.infnet.apppizzaria.test;
 
 import java.time.LocalDateTime;
 
@@ -24,6 +24,8 @@ public class PizzaTest implements ApplicationRunner {
 		p1.setDescricao("Com bastante queijo");
 		p1.setData(LocalDateTime.now());
 		
+		new AppCliente("Pizza de " + p1.getSabor()).relatorio(p1);
+		
 		Pizza p2 = new Pizza();
 		p2.setBorda("Pãozinho");
 		p2.setSabor("Calabresa");
@@ -32,6 +34,8 @@ public class PizzaTest implements ApplicationRunner {
 		p2.setDescricao("Sem cebola");
 		p2.setData(LocalDateTime.now());
 		
+		new AppCliente("Pizza de " + p2.getSabor()).relatorio(p2);
+		
 		Pizza p3 = new Pizza();
 		p3.setBorda("Cheddar");
 		p3.setSabor("Frango com catupiry");
@@ -39,6 +43,8 @@ public class PizzaTest implements ApplicationRunner {
 		p3.setValor(45.);
 		p3.setDescricao("Sem milho");
 		p3.setData(LocalDateTime.now());
+		
+		new AppCliente("Pizza de " + p3.getSabor()).relatorio(p3);
 		
 	}
 

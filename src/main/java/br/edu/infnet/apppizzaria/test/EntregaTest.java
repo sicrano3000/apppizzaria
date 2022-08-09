@@ -1,4 +1,4 @@
-package br.edu.infnet.apppizzaria;
+package br.edu.infnet.apppizzaria.test;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +13,7 @@ public class EntregaTest implements ApplicationRunner {
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		
 		System.out.println("#pedido");
 
 		Entrega e1 = new Entrega();
@@ -32,6 +33,7 @@ public class EntregaTest implements ApplicationRunner {
 		e3.setTempoPreparo(50);
 		e3.setPrevisaoEntrega(LocalDateTime.now());
 		System.out.println(e3);
+		
 	}
 
 }

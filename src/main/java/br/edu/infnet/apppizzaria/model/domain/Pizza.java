@@ -6,6 +6,21 @@ public class Pizza extends Massa {
 	private Double valor;
 	private String sabor;
 	
+	@Override
+	public String tipoBorda() {
+		if (getBorda() == "Catupiry") {
+			setBorda("Borda de italianinho com catupiry");
+		}
+		
+		return getBorda();
+	}
+	
+	@Override
+	public void impressao() {
+		System.out.println("#pizza");
+		System.out.println(this);
+	}
+	
 	public String getDescricao() {
 		return descricao;
 	}
