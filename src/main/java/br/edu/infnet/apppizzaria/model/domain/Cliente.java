@@ -1,6 +1,8 @@
 package br.edu.infnet.apppizzaria.model.domain;
 
-public class Cliente {
+import br.edu.infnet.apppizzaria.interfaces.IPrinter;
+
+public class Cliente implements IPrinter {
 	
 	private String nome;
 	private String cpf;
@@ -33,10 +35,16 @@ public class Cliente {
 		this.cpf = cpf;
 		this.email = email;
 	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#cliente");
+		System.out.println(this);
+	}
 	
 	@Override
 	public String toString() {
 		return "Cliente [nome=" + nome + ", cpf=" + cpf + ", email=" + email + "]";
-	}
+	}	
 
 }

@@ -6,12 +6,6 @@ public class Espaguete extends Massa {
 	private Double valor;
 	private String sabor;
 	
-	@Override
-	public void impressao() {
-		System.out.println("#espaguete");
-		System.out.println(this);
-	}
-	
 	public String getDescricao() {
 		return descricao;
 	}
@@ -32,8 +26,19 @@ public class Espaguete extends Massa {
 	}
 	
 	@Override
+	public Double calcularVenda() {
+		return valor * 1.2;
+	}
+	
+	@Override
+	public void impressao() {
+		System.out.println("#espaguete");
+		System.out.println(this);
+	}
+	
+	@Override
 	public String toString() {
-		return "Espaguete [descricao=" + descricao + ", valor=" + valor + ", sabor=" + sabor + "] "  + super.toString();
+		return "Espaguete [descricao=" + descricao + ", valor=" + calcularVenda() + ", sabor=" + sabor + "] "  + super.toString();
 	}
 
 }

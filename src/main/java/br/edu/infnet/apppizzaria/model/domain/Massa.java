@@ -2,9 +2,11 @@ package br.edu.infnet.apppizzaria.model.domain;
 
 import java.time.LocalDateTime;
 
-public abstract class Massa {
+import br.edu.infnet.apppizzaria.interfaces.IPrinter;
+
+public abstract class Massa implements IPrinter {
 	
-	private String borda;
+	protected String borda;
 	private String tipo;
 	private LocalDateTime data;
 	
@@ -12,7 +14,7 @@ public abstract class Massa {
 		return (borda == null || borda == "") ? "Brinde de queijo ralado" : borda;
 	}
 	
-	public abstract void impressao();
+	public abstract Double calcularVenda();
 	
 	public String getBorda() {
 		return borda;

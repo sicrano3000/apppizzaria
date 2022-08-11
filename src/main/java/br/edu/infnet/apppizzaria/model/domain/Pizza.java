@@ -6,21 +6,6 @@ public class Pizza extends Massa {
 	private Double valor;
 	private String sabor;
 	
-	@Override
-	public String tipoBorda() {
-		if (getBorda() == "Catupiry") {
-			setBorda("Borda de italianinho com catupiry");
-		}
-		
-		return getBorda();
-	}
-	
-	@Override
-	public void impressao() {
-		System.out.println("#pizza");
-		System.out.println(this);
-	}
-	
 	public String getDescricao() {
 		return descricao;
 	}
@@ -41,8 +26,29 @@ public class Pizza extends Massa {
 	}
 	
 	@Override
+	public String tipoBorda() {
+		if (getBorda() == "Catupiry") {
+			setBorda("Borda de italianinho com catupiry");
+		}
+		
+		return getBorda();
+	}
+	
+	@Override
+	public Double calcularVenda() {
+		var valorBorda = borda != "tradicional" ? 1.2 : 1.5;
+		return valor * valorBorda;
+	}
+	
+	@Override
+	public void impressao() {
+		System.out.println("#pizza");
+		System.out.println(this);
+	}
+	
+	@Override
 	public String toString() {
-		return "Pizza [descricao=" + descricao + ", valor=" + valor + ", sabor=" + sabor + "] "  + super.toString();
+		return "Pizza [descricao=" + descricao + ", valor=" + calcularVenda() + ", sabor=" + sabor + "] "  + super.toString();
 	}
 
 }

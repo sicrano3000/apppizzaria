@@ -24,7 +24,7 @@ public class EspagueteTest implements ApplicationRunner {
 		e1.setDescricao("Com muito molho");
 		e1.setData(LocalDateTime.now());
 		
-		new AppCliente("Espaguete de " + e1.getSabor()).relatorio(e1);
+		AppImpressao.relatorio("Espaguete de " + e1.getSabor(), e1);
 		
 		Espaguete e2 = new Espaguete();
 		e2.setBorda(null);
@@ -34,7 +34,7 @@ public class EspagueteTest implements ApplicationRunner {
 		e2.setDescricao("Com milho");
 		e2.setData(LocalDateTime.now());
 		
-		new AppCliente("Espaguete de " + e2.getSabor()).relatorio(e2);
+		AppImpressao.relatorio("Espaguete de " + e2.getSabor(), e2);
 		
 		Espaguete e3 = new Espaguete();
 		e3.setBorda(null);
@@ -44,7 +44,7 @@ public class EspagueteTest implements ApplicationRunner {
 		e3.setDescricao("Com alho torrado");
 		e3.setData(LocalDateTime.now());
 		
-		new AppCliente("Espaguete de " + e3.getSabor()).relatorio(e3);
+		AppImpressao.relatorio("Espaguete de " + e3.getSabor(), e3);
 		
 	}
 }

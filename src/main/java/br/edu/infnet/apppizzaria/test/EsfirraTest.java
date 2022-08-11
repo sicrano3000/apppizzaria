@@ -24,17 +24,17 @@ public class EsfirraTest implements ApplicationRunner {
 		e1.setDescricao("Com oregano");
 		e1.setData(LocalDateTime.now());
 		
-		new AppCliente("Esfirra de " + e1.getSabor()).relatorio(e1);
+		AppImpressao.relatorio("Esfirra de " + e1.getSabor(), e1);
 		
 		Esfirra e2 = new Esfirra();
-		e2.setBorda("Nutella");
+		e2.setBorda("Tradicional");
 		e2.setSabor("Chocolate");
 		e2.setTipo("Massa Grossa");
 		e2.setValor(10.);
 		e2.setDescricao("Com granulado");
 		e2.setData(LocalDateTime.now());
 		
-		new AppCliente("Esfirra de " + e2.getSabor()).relatorio(e2);
+		AppImpressao.relatorio("Esfirra de " + e2.getSabor(), e2);
 		
 		Esfirra e3 = new Esfirra();
 		e3.setBorda("Cheddar");
@@ -44,7 +44,7 @@ public class EsfirraTest implements ApplicationRunner {
 		e3.setDescricao("Sem milho");
 		e3.setData(LocalDateTime.now());
 		
-		new AppCliente("Esfirra de " + e3.getSabor()).relatorio(e3);
+		AppImpressao.relatorio("Esfirra de " + e3.getSabor(), e3);
 		
 	}
 }

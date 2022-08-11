@@ -2,7 +2,9 @@ package br.edu.infnet.apppizzaria.model.domain;
 
 import java.time.LocalDateTime;
 
-public class Entrega {
+import br.edu.infnet.apppizzaria.interfaces.IPrinter;
+
+public class Entrega implements IPrinter {
 	
 	private String endereco;
 	private Integer tempoPreparo;
@@ -25,6 +27,12 @@ public class Entrega {
 	}
 	public void setPrevisaoEntrega(LocalDateTime previsaoEntrega) {
 		this.previsaoEntrega = previsaoEntrega;
+	}
+	
+	@Override
+	public void impressao() {
+		System.out.println("#entrega");
+		System.out.println(this);
 	}
 
 	@Override
