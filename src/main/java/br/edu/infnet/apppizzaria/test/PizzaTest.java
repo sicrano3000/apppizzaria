@@ -16,7 +16,7 @@ public class PizzaTest implements ApplicationRunner {
 		
 		System.out.println("#pizza");
 		
-		Pizza p1 = new Pizza();
+		var p1 = new Pizza();
 		p1.setBorda("Catupiry");
 		p1.setSabor("4 queijos");
 		p1.setTipo("Massa fina");
@@ -26,7 +26,7 @@ public class PizzaTest implements ApplicationRunner {
 		
 		AppImpressao.relatorio("Pizza de " + p1.getSabor(), p1);
 		
-		Pizza p2 = new Pizza();
+		var p2 = new Pizza();
 		p2.setBorda("Tradicional");
 		p2.setSabor("Calabresa");
 		p2.setTipo("Massa Grossa");
@@ -36,7 +36,7 @@ public class PizzaTest implements ApplicationRunner {
 		
 		AppImpressao.relatorio("Pizza de " + p2.getSabor(), p2);
 		
-		Pizza p3 = new Pizza();
+		var p3 = new Pizza();
 		p3.setBorda("Cheddar");
 		p3.setSabor("Frango com catupiry");
 		p3.setTipo("Massa Fina");

@@ -16,7 +16,7 @@ public class EsfirraTest implements ApplicationRunner {
 		
 		System.out.println("#esfirra");
 		
-		Esfirra e1 = new Esfirra();
+		var e1 = new Esfirra();
 		e1.setBorda("Calabresa");
 		e1.setSabor("Bacon");
 		e1.setTipo("Massa pobre");
@@ -26,7 +26,7 @@ public class EsfirraTest implements ApplicationRunner {
 		
 		AppImpressao.relatorio("Esfirra de " + e1.getSabor(), e1);
 		
-		Esfirra e2 = new Esfirra();
+		var e2 = new Esfirra();
 		e2.setBorda("Tradicional");
 		e2.setSabor("Chocolate");
 		e2.setTipo("Massa Grossa");
@@ -36,7 +36,7 @@ public class EsfirraTest implements ApplicationRunner {
 		
 		AppImpressao.relatorio("Esfirra de " + e2.getSabor(), e2);
 		
-		Esfirra e3 = new Esfirra();
+		var e3 = new Esfirra();
 		e3.setBorda("Cheddar");
 		e3.setSabor("Frango");
 		e3.setTipo("Massa Fina");

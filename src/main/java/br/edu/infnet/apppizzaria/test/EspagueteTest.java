@@ -16,7 +16,7 @@ public class EspagueteTest implements ApplicationRunner {
 		
 		System.out.println("#espaguete");
 		
-		Espaguete e1 = new Espaguete();
+		var e1 = new Espaguete();
 		e1.setBorda("");
 		e1.setSabor("Bolonhesa");
 		e1.setTipo("Massa fina");
@@ -26,7 +26,7 @@ public class EspagueteTest implements ApplicationRunner {
 		
 		AppImpressao.relatorio("Espaguete de " + e1.getSabor(), e1);
 		
-		Espaguete e2 = new Espaguete();
+		var e2 = new Espaguete();
 		e2.setBorda(null);
 		e2.setSabor("Frango");
 		e2.setTipo("Ao dente");
@@ -36,7 +36,7 @@ public class EspagueteTest implements ApplicationRunner {
 		
 		AppImpressao.relatorio("Espaguete de " + e2.getSabor(), e2);
 		
-		Espaguete e3 = new Espaguete();
+		var e3 = new Espaguete();
 		e3.setBorda(null);
 		e3.setSabor("4 queijos");
 		e3.setTipo("Massa Grossa");

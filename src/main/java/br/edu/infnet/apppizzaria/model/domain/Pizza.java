@@ -1,5 +1,7 @@
 package br.edu.infnet.apppizzaria.model.domain;
 
+import java.util.Objects;
+
 public class Pizza extends Massa {
 	
 	private String descricao;
@@ -44,6 +46,23 @@ public class Pizza extends Massa {
 	public void impressao() {
 		System.out.println("#pizza");
 		System.out.println(this);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(descricao, sabor, valor);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pizza other = (Pizza) obj;
+		return Objects.equals(descricao, other.descricao) && Objects.equals(sabor, other.sabor) && Objects.equals(valor, other.valor);
 	}
 	
 	@Override
