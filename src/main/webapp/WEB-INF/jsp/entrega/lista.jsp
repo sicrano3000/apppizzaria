@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -24,9 +25,6 @@
 					<a class="nav-link" href="/espaguete/lista">Espaguete</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/massa/lista">Massa</a>
-				</li>
-				<li class="nav-item">
 					<a class="nav-link active" href="/entrega/lista">Entrega</a>
 				</li>
 				<li class="nav-item">
@@ -40,27 +38,23 @@
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
-	        <th>Atributo</th>
-	        <th>Tipo</th>
-	        <th>Descrição</th>
+			<th>ID</th>
+	        <th>Endereço</th>
+	        <th>Tempo de Preparo</th>
+	        <th>Previsão de Entrega</th>
+			<th></th>
 	      </tr>
 	    </thead>
 	    <tbody>
-	      <tr>
-	        <td>Endereco</td>
-	        <td>String</td>
-	        <td>Local para ser entregue</td>
-	      </tr>
-	      <tr>
-	        <td>TempoPreparo</td>
-	        <td>Integer</td>
-	        <td>Tempo em minutos necessário para preparar o pedido</td>
-	      </tr>
-	      <tr>
-	        <td>PrevisaoEntrega</td>
-	        <td>LocalDateTime</td>
-	        <td>Horário para o pedido ser entregue</td>
-	      </tr>
+		  <c:forEach var="e" items="${listagem}">
+			<tr>
+				<td>${e.id}</td>
+				<td>${e.endereco}</td>
+				<td>${e.tempoPreparo}</td>
+				<td>${e.previsaoEntrega}</td>
+				<td><a href="/entrega/${e.id}/excluir">excluir</a></td>
+			</tr>
+		  </c:forEach>
 	    </tbody>
 	  </table>
 	  

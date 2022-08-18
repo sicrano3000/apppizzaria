@@ -6,6 +6,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.apppizzaria.controller.PizzaController;
 import br.edu.infnet.apppizzaria.model.domain.Pizza;
 
 @Component
@@ -23,8 +24,7 @@ public class PizzaTest implements ApplicationRunner {
 		p1.setValor(50.);
 		p1.setDescricao("Com bastante queijo");
 		p1.setData(LocalDateTime.now());
-		
-		AppImpressao.relatorio("Pizza de " + p1.getSabor(), p1);
+		PizzaController.incluir(p1);
 		
 		var p2 = new Pizza();
 		p2.setBorda("Tradicional");
@@ -33,8 +33,7 @@ public class PizzaTest implements ApplicationRunner {
 		p2.setValor(40.);
 		p2.setDescricao("Sem cebola");
 		p2.setData(LocalDateTime.now());
-		
-		AppImpressao.relatorio("Pizza de " + p2.getSabor(), p2);
+		PizzaController.incluir(p2);
 		
 		var p3 = new Pizza();
 		p3.setBorda("Cheddar");
@@ -43,8 +42,7 @@ public class PizzaTest implements ApplicationRunner {
 		p3.setValor(45.);
 		p3.setDescricao("Sem milho");
 		p3.setData(LocalDateTime.now());
-		
-		AppImpressao.relatorio("Pizza de " + p3.getSabor(), p3);
+		PizzaController.incluir(p3);
 		
 	}
 

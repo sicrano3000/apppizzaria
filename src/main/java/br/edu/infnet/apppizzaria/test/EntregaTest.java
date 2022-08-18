@@ -7,6 +7,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.apppizzaria.controller.EntregaController;
 import br.edu.infnet.apppizzaria.model.domain.Cliente;
 import br.edu.infnet.apppizzaria.model.domain.Entrega;
 import br.edu.infnet.apppizzaria.model.domain.Esfirra;
@@ -37,7 +38,7 @@ public class EntregaTest implements ApplicationRunner {
 		e1.setEndereco("Rua A");
 		e1.setTempoPreparo(30);
 		e1.setCarrinho(produtoE1);
-		AppImpressao.relatorio("Entrega ", e1);
+		EntregaController.incluir(e1);
 		
 		//******************************************************************//
 		
@@ -58,7 +59,7 @@ public class EntregaTest implements ApplicationRunner {
 		e2.setEndereco("Rua B");
 		e2.setTempoPreparo(80);
 		e2.setCarrinho(produtoE2);
-		AppImpressao.relatorio("Entrega ", e2);
+		EntregaController.incluir(e2);
 		
 		//******************************************************************//
 		
@@ -89,7 +90,7 @@ public class EntregaTest implements ApplicationRunner {
 		e3.setEndereco("Rua C");
 		e3.setTempoPreparo(50);
 		e3.setCarrinho(produtoE3);
-		AppImpressao.relatorio("Entrega ", e3);
+		EntregaController.incluir(e3);
 		
 	}
 

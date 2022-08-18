@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -24,9 +25,6 @@
 					<a class="nav-link" href="/espaguete/lista">Espaguete</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/massa/lista">Massa</a>
-				</li>
-				<li class="nav-item">
 					<a class="nav-link" href="/entrega/lista">Entrega</a>
 				</li>
 				<li class="nav-item">
@@ -34,33 +32,35 @@
 				</li>
 			  </ul>
 			</div>
-		  </nav>
+		</nav>
 
 	  <h3>Classe: Pizza</h3>	              
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
-	        <th>Atributo</th>
+			<th>ID</th>
 	        <th>Tipo</th>
+	        <th>Sabor</th>
+	        <th>Borda</th>
+			<th>Valor</th>
 	        <th>Descrição</th>
+	        <th>Data</th>
+			<th></th>
 	      </tr>
 	    </thead>
 	    <tbody>
-	      <tr>
-	        <td>Sabor</td>
-	        <td>String</td>
-	        <td>Indica o sabor da pizza</td>
-	      </tr>
-	      <tr>
-	        <td>Valor</td>
-	        <td>Double</td>
-	        <td>Valor a ser pago</td>
-	      </tr>
-	      <tr>
-	        <td>Descricao</td>
-	        <td>String</td>
-	        <td>Detalhe adicional</td>
-	      </tr>
+		  <c:forEach var="p" items="${listagem}">
+			<tr>
+				<td>${p.id}</td>
+				<td>${p.tipo}</td>
+				<td>${p.sabor}</td>
+				<td>${p.borda}</td>
+				<td>${p.valor}</td>
+				<td>${p.descricao}</td>
+				<td>${p.data}</td>
+				<td><a href="/pizza/${p.id}/excluir">excluir</a></td>
+			</tr>
+		  </c:forEach>
 	    </tbody>
 	  </table>
 	  

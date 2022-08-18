@@ -6,6 +6,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.apppizzaria.controller.EspagueteController;
 import br.edu.infnet.apppizzaria.model.domain.Espaguete;
 
 @Component
@@ -23,8 +24,7 @@ public class EspagueteTest implements ApplicationRunner {
 		e1.setValor(55.);
 		e1.setDescricao("Com muito molho");
 		e1.setData(LocalDateTime.now());
-		
-		AppImpressao.relatorio("Espaguete de " + e1.getSabor(), e1);
+		EspagueteController.incluir(e1);
 		
 		var e2 = new Espaguete();
 		e2.setBorda(null);
@@ -33,8 +33,7 @@ public class EspagueteTest implements ApplicationRunner {
 		e2.setValor(50.);
 		e2.setDescricao("Com milho");
 		e2.setData(LocalDateTime.now());
-		
-		AppImpressao.relatorio("Espaguete de " + e2.getSabor(), e2);
+		EspagueteController.incluir(e2);
 		
 		var e3 = new Espaguete();
 		e3.setBorda(null);
@@ -43,8 +42,7 @@ public class EspagueteTest implements ApplicationRunner {
 		e3.setValor(60.);
 		e3.setDescricao("Com alho torrado");
 		e3.setData(LocalDateTime.now());
-		
-		AppImpressao.relatorio("Espaguete de " + e3.getSabor(), e3);
+		EspagueteController.incluir(e3);
 		
 	}
 }

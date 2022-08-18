@@ -6,16 +6,27 @@ import br.edu.infnet.apppizzaria.interfaces.IPrinter;
 
 public abstract class Massa implements IPrinter {
 	
+	private Integer id;
 	protected String borda;
 	private String tipo;
 	private LocalDateTime data;
 	
 	public String tipoBorda() {
-		return (borda == null || borda == "") ? "Brinde de queijo ralado" : borda;
+		if (getBorda() == null || borda == "") {
+			setBorda("Brinde de queijo ralado");
+		}
+		
+		return getBorda();
 	}
 	
 	public abstract Double calcularVenda();
 	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getBorda() {
 		return borda;
 	}

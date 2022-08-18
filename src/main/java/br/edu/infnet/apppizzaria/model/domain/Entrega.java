@@ -7,6 +7,7 @@ import br.edu.infnet.apppizzaria.interfaces.IPrinter;
 
 public class Entrega implements IPrinter {
 	
+	private Integer id;
 	private String endereco;
 	private Integer tempoPreparo;
 	private LocalDateTime previsaoEntrega;
@@ -18,6 +19,12 @@ public class Entrega implements IPrinter {
 		this.cliente = cliente;
 	}
 	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public Set<Object> getCarrinho() {
 		return carrinho;
 	}
@@ -35,8 +42,11 @@ public class Entrega implements IPrinter {
 	}
 	public void setTempoPreparo(Integer tempoPreparo) {
 		this.tempoPreparo = tempoPreparo;
+	}	
+	public LocalDateTime getPrevisaoEntrega() {
+		return previsaoEntrega;
 	}
-	
+
 	@Override
 	public void impressao() {
 		System.out.println("#entrega");

@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -24,9 +25,6 @@
 					<a class="nav-link" href="/espaguete/lista">Espaguete</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/massa/lista">Massa</a>
-				</li>
-				<li class="nav-item">
 					<a class="nav-link" href="/entrega/lista">Entrega</a>
 				</li>
 				<li class="nav-item">
@@ -40,27 +38,23 @@
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
-	        <th>Atributo</th>
-	        <th>Tipo</th>
-	        <th>Descrição</th>
+			<th>ID</th>
+	        <th>Nome</th>
+	        <th>CPF</th>
+	        <th>Email</th>
+			<th></th>
 	      </tr>
 	    </thead>
 	    <tbody>
-	      <tr>
-	        <td>Nome</td>
-	        <td>String</td>
-	        <td>Nome do Cliente</td>
-	      </tr>
-	      <tr>
-	        <td>CPF</td>
-	        <td>String</td>
-	        <td>CPF do Cliente</td>
-	      </tr>
-	      <tr>
-	        <td>Email</td>
-	        <td>String</td>
-	        <td>Email do Cliente</td>
-	      </tr>
+		  <c:forEach var="c" items="${listagem}">
+			<tr>
+				<td>${c.id}</td>
+				<td>${c.nome}</td>
+				<td>${c.cpf}</td>
+				<td>${c.email}</td>
+				<td><a href="/cliente/${c.id}/excluir">excluir</a></td>
+			</tr>
+		  </c:forEach>
 	    </tbody>
 	  </table>
 	  

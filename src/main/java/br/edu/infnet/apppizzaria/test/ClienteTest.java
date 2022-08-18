@@ -4,6 +4,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.apppizzaria.controller.ClienteController;
 import br.edu.infnet.apppizzaria.model.domain.Cliente;
 
 @Component
@@ -18,22 +19,19 @@ public class ClienteTest implements ApplicationRunner {
 		c1.setNome("Jonathan");
 		c1.setEmail("jonathan@gmail.com");
 		c1.setCpf("11111111111");
-		
-		AppImpressao.relatorio("Cliente ", c1);
+		ClienteController.incluir(c1);
 
 		var c2 = new Cliente();
 		c2.setNome("Thairine");
 		c2.setEmail("thairine@gmail.com");
 		c2.setCpf("22222222222");
-		
-		AppImpressao.relatorio("Cliente ", c2);
+		ClienteController.incluir(c2);
 
 		var c3 = new Cliente();
 		c3.setNome("Carol");
 		c3.setEmail("carol@gmail.com");
 		c3.setCpf("33333333333");
-		
-		AppImpressao.relatorio("Cliente ", c3);
+		ClienteController.incluir(c3);
 
 	}
 }
