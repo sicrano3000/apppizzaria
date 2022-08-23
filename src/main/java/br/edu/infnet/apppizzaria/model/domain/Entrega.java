@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 import br.edu.infnet.apppizzaria.interfaces.IPrinter;
+import br.edu.infnet.apppizzaria.model.exception.CarrinhoVazioException;
+import br.edu.infnet.apppizzaria.model.exception.ClienteNuloException;
 
 public class Entrega implements IPrinter {
 	
@@ -14,9 +16,18 @@ public class Entrega implements IPrinter {
 	private Cliente cliente;
 	private Set<Object> carrinho;
 	
-	public Entrega(Cliente cliente) {
+	public Entrega(Cliente cliente, Set<Object> carrinho) throws ClienteNuloException, CarrinhoVazioException {
+		if (cliente == null) {
+			throw new ClienteNuloException("Impossível gerar uma entrega sem um Cliente");
+		}
+		
+		if (carrinho.size() < 1) {
+			throw new CarrinhoVazioException("O carrinho não pode estár vazio");
+		}
+		
 		this.previsaoEntrega = LocalDateTime.now();
 		this.cliente = cliente;
+		this.carrinho = carrinho;
 	}
 	
 	public Integer getId() {
@@ -24,12 +35,6 @@ public class Entrega implements IPrinter {
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public Set<Object> getCarrinho() {
-		return carrinho;
-	}
-	public void setCarrinho(Set<Object> carrinho) {
-		this.carrinho = carrinho;
 	}
 	public String getEndereco() {
 		return endereco;

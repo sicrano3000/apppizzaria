@@ -8,13 +8,16 @@ import org.springframework.stereotype.Component;
 
 import br.edu.infnet.apppizzaria.controller.EspagueteController;
 import br.edu.infnet.apppizzaria.model.domain.Espaguete;
+import br.edu.infnet.apppizzaria.model.exception.ValorNegativoException;
 
 @Component
 public class EspagueteTest implements ApplicationRunner {
 
 	@Override
-	public void run(ApplicationArguments args) throws Exception {
-		
+	public void run(ApplicationArguments args) {
+		System.out.println("");
+		System.out.println("----------------------------------------------------------");
+		System.out.println("");
 		System.out.println("#espaguete");
 		
 		var e1 = new Espaguete();
@@ -25,6 +28,11 @@ public class EspagueteTest implements ApplicationRunner {
 		e1.setDescricao("Com muito molho");
 		e1.setData(LocalDateTime.now());
 		EspagueteController.incluir(e1);
+		try {
+			e1.calcularVenda();
+		} catch (ValorNegativoException v) {
+			System.out.println("[ERROR - Espaguete] -> " + v.getMessage());
+		}
 		
 		var e2 = new Espaguete();
 		e2.setBorda(null);
@@ -34,6 +42,11 @@ public class EspagueteTest implements ApplicationRunner {
 		e2.setDescricao("Com milho");
 		e2.setData(LocalDateTime.now());
 		EspagueteController.incluir(e2);
+		try {
+			e2.calcularVenda();
+		} catch (ValorNegativoException v) {
+			System.out.println("[ERROR - Espaguete] -> " + v.getMessage());
+		}
 		
 		var e3 = new Espaguete();
 		e3.setBorda(null);
@@ -43,6 +56,11 @@ public class EspagueteTest implements ApplicationRunner {
 		e3.setDescricao("Com alho torrado");
 		e3.setData(LocalDateTime.now());
 		EspagueteController.incluir(e3);
+		try {
+			e3.calcularVenda();
+		} catch (ValorNegativoException v) {
+			System.out.println("[ERROR - Espaguete] -> " + v.getMessage());
+		}
 		
 	}
 }

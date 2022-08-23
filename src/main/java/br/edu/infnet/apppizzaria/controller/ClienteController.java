@@ -22,7 +22,7 @@ public class ClienteController {
 		cliente.setId(id++);
 		mapaCliente.put(cliente.getId(), cliente);
 		
-		AppImpressao.relatorio("Entrega para o cliente" + cliente.getNome(), cliente);
+		AppImpressao.relatorio("Entrega para o cliente " + cliente.getNome(), cliente);
 	}
 	
 	public static Collection<Cliente> obterLista() {

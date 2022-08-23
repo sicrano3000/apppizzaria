@@ -2,6 +2,9 @@ package br.edu.infnet.apppizzaria.model.domain;
 
 import java.util.Objects;
 
+import br.edu.infnet.apppizzaria.model.exception.BordaNuloException;
+import br.edu.infnet.apppizzaria.model.exception.ValorNegativoException;
+
 public class Pizza extends Massa {
 	
 	private String descricao;
@@ -37,9 +40,20 @@ public class Pizza extends Massa {
 	}
 	
 	@Override
-	public Double calcularVenda() {
+	public String calcularVenda() throws BordaNuloException, ValorNegativoException {
+		if (valor < 1) {
+			throw new ValorNegativoException("O Valor não pode ser negativo!");
+		}
+				
+		if (borda == null) {
+			throw new BordaNuloException("É preciso escolher uma borda");
+		}
+		
 		var valorBorda = borda != "tradicional" ? 1.2 : 1.5;
-		return valor * valorBorda;
+		var total = valor * valorBorda;
+		var msg = "O valor total é: " + total;
+		System.out.println(msg);
+		return msg;
 	}
 	
 	@Override
@@ -67,7 +81,7 @@ public class Pizza extends Massa {
 	
 	@Override
 	public String toString() {
-		return "Pizza [descricao=" + descricao + ", valor=" + calcularVenda() + ", sabor=" + sabor + "] "  + super.toString();
+		return "Pizza [descricao=" + descricao + ", sabor=" + sabor + "] " + super.toString();
 	}
 
 }

@@ -8,13 +8,17 @@ import org.springframework.stereotype.Component;
 
 import br.edu.infnet.apppizzaria.controller.EsfirraController;
 import br.edu.infnet.apppizzaria.model.domain.Esfirra;
+import br.edu.infnet.apppizzaria.model.exception.BordaNuloException;
+import br.edu.infnet.apppizzaria.model.exception.ValorNegativoException;
 
 @Component
 public class EsfirraTest implements ApplicationRunner {
 
 	@Override
-	public void run(ApplicationArguments args) throws Exception {
-		
+	public void run(ApplicationArguments args) {
+		System.out.println("");
+		System.out.println("----------------------------------------------------------");
+		System.out.println("");
 		System.out.println("#esfirra");
 		
 		var e1 = new Esfirra();
@@ -25,6 +29,13 @@ public class EsfirraTest implements ApplicationRunner {
 		e1.setDescricao("Com oregano");
 		e1.setData(LocalDateTime.now());
 		EsfirraController.incluir(e1);
+		try {
+			e1.calcularVenda();
+		} catch (BordaNuloException b) {
+			System.out.println("[ERROR - ESFIRRA] -> " + b.getMessage());
+		} catch (ValorNegativoException v) {
+			System.out.println("[ERROR - ESFIRRA] -> " + v.getMessage());
+		}
 		
 		var e2 = new Esfirra();
 		e2.setBorda("Tradicional");
@@ -34,6 +45,13 @@ public class EsfirraTest implements ApplicationRunner {
 		e2.setDescricao("Com granulado");
 		e2.setData(LocalDateTime.now());
 		EsfirraController.incluir(e2);
+		try {
+			e2.calcularVenda();
+		} catch (BordaNuloException b) {
+			System.out.println("[ERROR - ESFIRRA] -> " + b.getMessage());
+		} catch (ValorNegativoException v) {
+			System.out.println("[ERROR - ESFIRRA] -> " + v.getMessage());
+		}
 		
 		var e3 = new Esfirra();
 		e3.setBorda("Cheddar");
@@ -43,6 +61,29 @@ public class EsfirraTest implements ApplicationRunner {
 		e3.setDescricao("Sem milho");
 		e3.setData(LocalDateTime.now());
 		EsfirraController.incluir(e3);
+		try {
+			e3.calcularVenda();
+		} catch (BordaNuloException b) {
+			System.out.println("[ERROR - ESFIRRA] -> " + b.getMessage());
+		} catch (ValorNegativoException v) {
+			System.out.println("[ERROR - ESFIRRA] -> " + v.getMessage());
+		}
+		
+		var e4 = new Esfirra();
+		e4.setBorda(null);
+		e4.setSabor("Frango com catupiry");
+		e4.setTipo("Massa Fina");
+		e4.setValor(15.);
+		e4.setDescricao("Sem milho");
+		e4.setData(LocalDateTime.now());
+		EsfirraController.incluir(e4);
+		try {
+			e4.calcularVenda();
+		} catch (BordaNuloException b) {
+			System.out.println("[ERROR - ESFIRRA] -> " + b.getMessage());
+		} catch (ValorNegativoException v) {
+			System.out.println("[ERROR - ESFIRRA] -> " + v.getMessage());
+		}
 		
 	}
 }

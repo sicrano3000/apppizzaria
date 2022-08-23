@@ -2,6 +2,8 @@ package br.edu.infnet.apppizzaria.model.domain;
 
 import java.util.Objects;
 
+import br.edu.infnet.apppizzaria.model.exception.ValorNegativoException;
+
 public class Espaguete extends Massa {
 	
 	private String descricao;
@@ -28,8 +30,15 @@ public class Espaguete extends Massa {
 	}
 	
 	@Override
-	public Double calcularVenda() {
-		return valor * 1.2;
+	public String calcularVenda() throws ValorNegativoException {
+		if (valor < 1) {
+			throw new ValorNegativoException("O Valor não pode ser negativo!");
+		}
+		
+		var total = valor * 1.2;
+		var msg = "O valor total é: " + total;
+		System.out.println(msg);
+		return msg;
 	}
 	
 	@Override
@@ -57,7 +66,7 @@ public class Espaguete extends Massa {
 	
 	@Override
 	public String toString() {
-		return "Espaguete [descricao=" + descricao + ", valor=" + calcularVenda() + ", sabor=" + sabor + "] "  + super.toString();
+		return "Espaguete [descricao=" + descricao + ", sabor=" + sabor + "] "  + super.toString();
 	}
 
 }

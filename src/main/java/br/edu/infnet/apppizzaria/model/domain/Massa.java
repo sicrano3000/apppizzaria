@@ -3,6 +3,8 @@ package br.edu.infnet.apppizzaria.model.domain;
 import java.time.LocalDateTime;
 
 import br.edu.infnet.apppizzaria.interfaces.IPrinter;
+import br.edu.infnet.apppizzaria.model.exception.BordaNuloException;
+import br.edu.infnet.apppizzaria.model.exception.ValorNegativoException;
 
 public abstract class Massa implements IPrinter {
 	
@@ -19,7 +21,7 @@ public abstract class Massa implements IPrinter {
 		return getBorda();
 	}
 	
-	public abstract Double calcularVenda();
+	public abstract String calcularVenda() throws BordaNuloException, ValorNegativoException;
 	
 	public Integer getId() {
 		return id;

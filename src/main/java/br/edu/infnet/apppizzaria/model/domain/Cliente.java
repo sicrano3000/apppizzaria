@@ -1,6 +1,7 @@
 package br.edu.infnet.apppizzaria.model.domain;
 
 import br.edu.infnet.apppizzaria.interfaces.IPrinter;
+import br.edu.infnet.apppizzaria.model.exception.CPFInvalidoException;
 
 public class Cliente implements IPrinter {
 	
@@ -37,10 +38,18 @@ public class Cliente implements IPrinter {
 	public Cliente() {
 	}
 	
-	public Cliente(String nome, String cpf, String email) {
+	public Cliente(String nome, String email, String cpf) throws CPFInvalidoException {
+		if (cpf == null) {
+			throw new CPFInvalidoException("Não é possível aceitar CPF nulo");
+		}
+		
+		if (cpf.isEmpty()) {
+			throw new CPFInvalidoException("Não é possível aceitar CPF vazio");
+		}
+		
 		this.nome = nome;
-		this.cpf = cpf;
 		this.email = email;
+		this.cpf = cpf;
 	}
 
 	@Override
