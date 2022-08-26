@@ -1,5 +1,9 @@
 package br.edu.infnet.apppizzaria.test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 import org.springframework.boot.ApplicationArguments;
@@ -19,47 +23,47 @@ public class EspagueteTest implements ApplicationRunner {
 		System.out.println("----------------------------------------------------------");
 		System.out.println("");
 		System.out.println("#espaguete");
+
+		final var diretorio = "C:\\Projetos_Estudos\\";
+		final var file = "espaguete.txt";
 		
-		var e1 = new Espaguete();
-		e1.setBorda("");
-		e1.setSabor("Bolonhesa");
-		e1.setTipo("Massa fina");
-		e1.setValor(55.);
-		e1.setDescricao("Com muito molho");
-		e1.setData(LocalDateTime.now());
-		EspagueteController.incluir(e1);
 		try {
-			e1.calcularVenda();
-		} catch (ValorNegativoException v) {
-			System.out.println("[ERROR - Espaguete] -> " + v.getMessage());
-		}
-		
-		var e2 = new Espaguete();
-		e2.setBorda(null);
-		e2.setSabor("Frango");
-		e2.setTipo("Ao dente");
-		e2.setValor(50.);
-		e2.setDescricao("Com milho");
-		e2.setData(LocalDateTime.now());
-		EspagueteController.incluir(e2);
-		try {
-			e2.calcularVenda();
-		} catch (ValorNegativoException v) {
-			System.out.println("[ERROR - Espaguete] -> " + v.getMessage());
-		}
-		
-		var e3 = new Espaguete();
-		e3.setBorda(null);
-		e3.setSabor("4 queijos");
-		e3.setTipo("Massa Grossa");
-		e3.setValor(60.);
-		e3.setDescricao("Com alho torrado");
-		e3.setData(LocalDateTime.now());
-		EspagueteController.incluir(e3);
-		try {
-			e3.calcularVenda();
-		} catch (ValorNegativoException v) {
-			System.out.println("[ERROR - Espaguete] -> " + v.getMessage());
+			try {
+				FileReader fileReader = new FileReader(diretorio.concat(file));
+				BufferedReader leitura = new BufferedReader(fileReader);
+
+				var linha = leitura.readLine();
+				while(linha != null) {
+
+					try {						
+						var campo = linha.split(";");
+						
+						var espaguete = new Espaguete();
+						espaguete.setBorda(campo[0]);
+						espaguete.setSabor(campo[1]);
+						espaguete.setTipo(campo[2]);
+						espaguete.setValor(Double.valueOf(campo[3]));
+						espaguete.setDescricao(campo[4]);
+						espaguete.setData(LocalDateTime.now());
+						EspagueteController.incluir(espaguete);
+						
+						espaguete.calcularVenda();
+					} catch (ValorNegativoException v) {
+						System.out.println("[ERROR - Espaguete] -> " + v.getMessage());
+					}
+					
+					linha = leitura.readLine();
+				}
+				
+				leitura.close();
+				fileReader.close();
+			} catch (FileNotFoundException e) {
+				System.out.println("[ERRO] - O arquivo não existe.");
+			} catch (IOException e) {
+				System.out.println("[ERRO] - Houve um erro ao fechar o arquivo.");
+			}
+		} finally {
+			System.out.println("Terminou!!!");
 		}
 		
 	}

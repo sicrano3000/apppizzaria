@@ -39,9 +39,11 @@
 	    <thead>
 	      <tr>
 			<th>ID</th>
-	        <th>EndereÃ§o</th>
+	        <th>Endereço</th>
 	        <th>Tempo de Preparo</th>
-	        <th>PrevisÃ£o de Entrega</th>
+	        <th>Previsão de Entrega</th>
+	        <th>Cliente</th>
+	        <th>Carrinho</th>
 			<th></th>
 	      </tr>
 	    </thead>
@@ -52,6 +54,12 @@
 				<td>${e.endereco}</td>
 				<td>${e.tempoPreparo}</td>
 				<td>${e.previsaoEntrega}</td>
+				<td>${e.cliente.nome}</td>
+				<td>
+					<c:forEach var="c" items="${e.carrinho}">
+						- ${c.sabor}<br />
+					</c:forEach>
+				</td>
 				<td><a href="/entrega/${e.id}/excluir">excluir</a></td>
 			</tr>
 		  </c:forEach>

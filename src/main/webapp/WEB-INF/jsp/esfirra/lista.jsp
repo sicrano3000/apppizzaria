@@ -43,7 +43,7 @@
 			  <th>Sabor</th>
 			  <th>Borda</th>
 			  <th>Valor</th>
-			  <th>DescriÃ§Ã£o</th>
+			  <th>Descrição</th>
 			  <th>Data</th>
 			  <th></th>
 			</tr>

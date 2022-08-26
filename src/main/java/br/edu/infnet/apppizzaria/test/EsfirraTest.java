@@ -1,5 +1,9 @@
 package br.edu.infnet.apppizzaria.test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 import org.springframework.boot.ApplicationArguments;
@@ -21,68 +25,48 @@ public class EsfirraTest implements ApplicationRunner {
 		System.out.println("");
 		System.out.println("#esfirra");
 		
-		var e1 = new Esfirra();
-		e1.setBorda("Calabresa");
-		e1.setSabor("Bacon");
-		e1.setTipo("Massa pobre");
-		e1.setValor(15.);
-		e1.setDescricao("Com oregano");
-		e1.setData(LocalDateTime.now());
-		EsfirraController.incluir(e1);
-		try {
-			e1.calcularVenda();
-		} catch (BordaNuloException b) {
-			System.out.println("[ERROR - ESFIRRA] -> " + b.getMessage());
-		} catch (ValorNegativoException v) {
-			System.out.println("[ERROR - ESFIRRA] -> " + v.getMessage());
-		}
+		final var diretorio = "C:\\Projetos_Estudos\\";
+		final var file = "esfirra.txt";
 		
-		var e2 = new Esfirra();
-		e2.setBorda("Tradicional");
-		e2.setSabor("Chocolate");
-		e2.setTipo("Massa Grossa");
-		e2.setValor(10.);
-		e2.setDescricao("Com granulado");
-		e2.setData(LocalDateTime.now());
-		EsfirraController.incluir(e2);
 		try {
-			e2.calcularVenda();
-		} catch (BordaNuloException b) {
-			System.out.println("[ERROR - ESFIRRA] -> " + b.getMessage());
-		} catch (ValorNegativoException v) {
-			System.out.println("[ERROR - ESFIRRA] -> " + v.getMessage());
-		}
-		
-		var e3 = new Esfirra();
-		e3.setBorda("Cheddar");
-		e3.setSabor("Frango");
-		e3.setTipo("Massa Fina");
-		e3.setValor(12.);
-		e3.setDescricao("Sem milho");
-		e3.setData(LocalDateTime.now());
-		EsfirraController.incluir(e3);
-		try {
-			e3.calcularVenda();
-		} catch (BordaNuloException b) {
-			System.out.println("[ERROR - ESFIRRA] -> " + b.getMessage());
-		} catch (ValorNegativoException v) {
-			System.out.println("[ERROR - ESFIRRA] -> " + v.getMessage());
-		}
-		
-		var e4 = new Esfirra();
-		e4.setBorda(null);
-		e4.setSabor("Frango com catupiry");
-		e4.setTipo("Massa Fina");
-		e4.setValor(15.);
-		e4.setDescricao("Sem milho");
-		e4.setData(LocalDateTime.now());
-		EsfirraController.incluir(e4);
-		try {
-			e4.calcularVenda();
-		} catch (BordaNuloException b) {
-			System.out.println("[ERROR - ESFIRRA] -> " + b.getMessage());
-		} catch (ValorNegativoException v) {
-			System.out.println("[ERROR - ESFIRRA] -> " + v.getMessage());
+			try {
+				FileReader fileReader = new FileReader(diretorio.concat(file));
+				BufferedReader leitura = new BufferedReader(fileReader);
+
+				var linha = leitura.readLine();
+				while(linha != null) {
+
+					try {						
+						var campo = linha.split(";");
+						
+						var esfirra = new Esfirra();
+						esfirra.setBorda(campo[0]);
+						esfirra.setSabor(campo[1]);
+						esfirra.setTipo(campo[2]);
+						esfirra.setValor(Double.valueOf(campo[3]));
+						esfirra.setDescricao(campo[4]);
+						esfirra.setData(LocalDateTime.now());
+						EsfirraController.incluir(esfirra);
+						
+						esfirra.calcularVenda();
+					} catch (BordaNuloException b) {
+						System.out.println("[ERROR - ESFIRRA] -> " + b.getMessage());
+					} catch (ValorNegativoException v) {
+						System.out.println("[ERROR - ESFIRRA] -> " + v.getMessage());
+					}
+					
+					linha = leitura.readLine();
+				}
+				
+				leitura.close();
+				fileReader.close();
+			} catch (FileNotFoundException e) {
+				System.out.println("[ERRO] - O arquivo não existe.");
+			} catch (IOException e) {
+				System.out.println("[ERRO] - Houve um erro ao fechar o arquivo.");
+			}
+		} finally {
+			System.out.println("Terminou!!!");
 		}
 		
 	}

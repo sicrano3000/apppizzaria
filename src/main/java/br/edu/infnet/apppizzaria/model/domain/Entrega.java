@@ -30,6 +30,12 @@ public class Entrega implements IPrinter {
 		this.carrinho = carrinho;
 	}
 	
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public Set<Object> getCarrinho() {
+		return carrinho;
+	}
 	public Integer getId() {
 		return id;
 	}

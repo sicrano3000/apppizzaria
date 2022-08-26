@@ -1,5 +1,9 @@
 package br.edu.infnet.apppizzaria.test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 import org.springframework.boot.ApplicationArguments;
@@ -21,68 +25,48 @@ public class PizzaTest implements ApplicationRunner {
 		System.out.println("");
 		System.out.println("#pizza");
 		
-		var p1 = new Pizza();
-		p1.setBorda("Catupiry");
-		p1.setSabor("4 queijos");
-		p1.setTipo("Massa fina");
-		p1.setValor(50.);
-		p1.setDescricao("Com bastante queijo");
-		p1.setData(LocalDateTime.now());
-		PizzaController.incluir(p1);
-		try {
-			p1.calcularVenda();
-		} catch (BordaNuloException b) {
-			System.out.println("[ERROR - PIZZA] -> " + b.getMessage());
-		} catch (ValorNegativoException v) {
-			System.out.println("[ERROR - PIZZA] -> " + v.getMessage());
-		}
+		final var diretorio = "C:\\Projetos_Estudos\\";
+		final var file = "pizza.txt";
 		
-		var p2 = new Pizza();
-		p2.setBorda("Tradicional");
-		p2.setSabor("Calabresa");
-		p2.setTipo("Massa Grossa");
-		p2.setValor(40.);
-		p2.setDescricao("Sem cebola");
-		p2.setData(LocalDateTime.now());
-		PizzaController.incluir(p2);
 		try {
-			p2.calcularVenda();
-		} catch (BordaNuloException b) {
-			System.out.println("[ERROR - PIZZA] -> " + b.getMessage());
-		} catch (ValorNegativoException v) {
-			System.out.println("[ERROR - PIZZA] -> " + v.getMessage());
-		}
-		
-		var p3 = new Pizza();
-		p3.setBorda("Cheddar");
-		p3.setSabor("Frango com catupiry");
-		p3.setTipo("Massa Fina");
-		p3.setValor(45.);
-		p3.setDescricao("Sem milho");
-		p3.setData(LocalDateTime.now());
-		PizzaController.incluir(p3);
-		try {
-			p3.calcularVenda();
-		} catch (BordaNuloException b) {
-			System.out.println("[ERROR - PIZZA] -> " + b.getMessage());
-		} catch (ValorNegativoException v) {
-			System.out.println("[ERROR - PIZZA] -> " + v.getMessage());
-		}
-		
-		var p4 = new Pizza();
-		p4.setBorda(null);
-		p4.setSabor("Lombo canadense");
-		p4.setTipo("Massa Fina");
-		p4.setValor(60.);
-		p4.setDescricao("Adicionar cebola");
-		p4.setData(LocalDateTime.now());
-		PizzaController.incluir(p4);
-		try {
-			p4.calcularVenda();
-		} catch (BordaNuloException b) {
-			System.out.println("[ERROR - PIZZA] -> " + b.getMessage());
-		} catch (ValorNegativoException v) {
-			System.out.println("[ERROR - PIZZA] -> " + v.getMessage());
+			try {
+				FileReader fileReader = new FileReader(diretorio.concat(file));
+				BufferedReader leitura = new BufferedReader(fileReader);
+
+				var linha = leitura.readLine();
+				while(linha != null) {
+
+					try {						
+						var campo = linha.split(";");
+						
+						var pizza = new Pizza();
+						pizza.setBorda(campo[0]);
+						pizza.setSabor(campo[1]);
+						pizza.setTipo(campo[2]);
+						pizza.setValor(Double.valueOf(campo[3]));
+						pizza.setDescricao(campo[4]);
+						pizza.setData(LocalDateTime.now());
+						PizzaController.incluir(pizza);
+						
+						pizza.calcularVenda();
+					} catch (BordaNuloException b) {
+						System.out.println("[ERROR - PIZZA] -> " + b.getMessage());
+					} catch (ValorNegativoException v) {
+						System.out.println("[ERROR - PIZZA] -> " + v.getMessage());
+					}
+					
+					linha = leitura.readLine();
+				}
+				
+				leitura.close();
+				fileReader.close();
+			} catch (FileNotFoundException e) {
+				System.out.println("[ERRO] - O arquivo não existe.");
+			} catch (IOException e) {
+				System.out.println("[ERRO] - Houve um erro ao fechar o arquivo.");
+			}
+		} finally {
+			System.out.println("Terminou!!!");
 		}
 		
 	}

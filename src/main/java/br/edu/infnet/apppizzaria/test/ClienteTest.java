@@ -1,5 +1,10 @@
 package br.edu.infnet.apppizzaria.test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -17,40 +22,39 @@ public class ClienteTest implements ApplicationRunner {
 		System.out.println("----------------------------------------------------------");
 		System.out.println("");
 		System.out.println("#cliente");
-
-		try {
-			var c1 = new Cliente("Jonathan", "jonathan@gmail.com", "11111111111");
-			ClienteController.incluir(c1);
-		} catch (CPFInvalidoException e) {
-			System.out.println("[ERROR - CLIENTE] -> " + e.getMessage());
-		}
-
-		try {
-			var c2 = new Cliente("Thairine", "thairine@gmail.com", "22222222222");
-			ClienteController.incluir(c2);
-		} catch (CPFInvalidoException e) {
-			System.out.println("[ERROR - CLIENTE] -> " + e.getMessage());
-		}
-
-		try {
-			var c3 = new Cliente("Carol", "carol@gmail.com", "33333333333");
-			ClienteController.incluir(c3);
-		} catch (CPFInvalidoException e) {
-			System.out.println("[ERROR - CLIENTE] -> " + e.getMessage());
-		}
-
-		try {
-			var c4 = new Cliente("Philipe", "philipe@gmail.com", "");
-			ClienteController.incluir(c4);
-		} catch (CPFInvalidoException e) {
-			System.out.println("[ERROR - CLIENTE] -> " + e.getMessage());
-		}
+		
+		final var diretorio = "C:\\Projetos_Estudos\\";
+		final var file = "cliente.txt";
 		
 		try {
-			var c5 = new Cliente("Amaral", "amaral@gmail.com", null);
-			ClienteController.incluir(c5);
-		} catch (CPFInvalidoException e) {
-			System.out.println("[ERROR - CLIENTE] -> " + e.getMessage());
+			try {
+				FileReader fileReader = new FileReader(diretorio.concat(file));
+				BufferedReader leitura = new BufferedReader(fileReader);
+
+				var linha = leitura.readLine();
+				while(linha != null) {
+
+					try {						
+						var campo = linha.split(";");
+						
+						var cliente = new Cliente(campo[0], campo[1], campo[2]);
+						ClienteController.incluir(cliente);
+					} catch (CPFInvalidoException e) {
+						System.out.println("[ERROR - CLIENTE] -> " + e.getMessage());
+					}
+					
+					linha = leitura.readLine();
+				}
+				
+				leitura.close();
+				fileReader.close();
+			} catch (FileNotFoundException e) {
+				System.out.println("[ERRO] - O arquivo não existe.");
+			} catch (IOException e) {
+				System.out.println("[ERRO] - Houve um erro ao fechar o arquivo.");
+			}
+		} finally {
+			System.out.println("Terminou!!!");
 		}
 		
 	}

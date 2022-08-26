@@ -34,7 +34,7 @@
 		  </nav>
 
 	  <h2>AppPizzaria</h2>
-	  <p>Projeto de Gest√£o de Pizzas e Massas</p>
+	  <p>Projeto de Gest„o de Pizzas e Massas</p>
 	  
 	</div>	
 </body>
