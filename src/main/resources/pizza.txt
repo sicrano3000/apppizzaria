@@ -1,0 +1,3 @@
+Catupiry;Pizza de 4 queijos;Massa Fina;60;Com muito queijo
+Tradicional;Pizza de calabresa;Massa Grossa;50;Sem cebola
+Cheddar;Pizza de Frango com catupiry;Massa Fina;55;Sem milho

@@ -1,0 +1,3 @@
+;Espaguete à Bolonhesa;Massa Grossa;55;Com muito molho
+;Espaguete de Frango;Ao Dente;50;Com milho
+;Espaguete aos 4 Queijos;Massa Fina;60;Com alho torrado
