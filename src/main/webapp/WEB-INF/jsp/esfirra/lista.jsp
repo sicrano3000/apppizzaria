@@ -9,30 +9,7 @@
 </head>
 <body>
 	<div class="container mt-3">
-		<nav class="navbar navbar-expand-sm bg-light navbar-light">
-			<div class="container-fluid">
-			  <ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="/">Home</a>
-				</li>
-			   <li class="nav-item">
-					<a class="nav-link" href="/pizza/lista">Pizza</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link active" href="/esfirra/lista">Esfirra</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/espaguete/lista">Espaguete</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/entrega/lista">Entrega</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/cliente/lista">Cliente</a>
-				</li>
-			  </ul>
-			</div>
-		  </nav>
+	  <c:import url="/WEB-INF/jsp/menu.jsp" />
 
 	  <h3>Classe: Esfirra</h3>	              
 	  <table class="table table-striped">

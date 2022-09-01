@@ -21,17 +21,15 @@ public class AppController {
 	
 	@PostMapping("/login")
 	public String login(Model model, @RequestParam String email, @RequestParam String senha) {
-		System.out.println("[email " +email+ "]");
-		System.out.println("[senha " +senha+ "]");
+		var usuario = UsuarioController.validar(email, senha);
 		
-		if (email.equalsIgnoreCase(senha)) {
-			var nome = "Admin";
-			model.addAttribute("user", nome);
+		if (usuario != null) {
+			model.addAttribute("user", usuario.getNome());
 			
 			return "home";
 		}
 		
-		return "/login";
+		return "login";
 	}
 	
 	@GetMapping("/logout")
