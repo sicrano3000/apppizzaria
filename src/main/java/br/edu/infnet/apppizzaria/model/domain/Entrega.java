@@ -57,6 +57,9 @@ public class Entrega implements IPrinter {
 	public LocalDateTime getPrevisaoEntrega() {
 		return previsaoEntrega;
 	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
 	@Override
 	public void impressao() {

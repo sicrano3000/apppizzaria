@@ -11,6 +11,15 @@ public class Pizza extends Massa {
 	private Double valor;
 	private String sabor;
 	
+	public Pizza() {
+	}
+	
+	public Pizza(String descricao, Double valor, String sabor) {
+		this.descricao = descricao;
+		this.valor = valor;
+		this.sabor = sabor;
+	}
+	
 	public String getDescricao() {
 		return descricao;
 	}

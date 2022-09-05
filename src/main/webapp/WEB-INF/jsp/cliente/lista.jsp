@@ -35,6 +35,8 @@
 	    </tbody>
 	  </table>
 	  
+	  <p><a href="/cliente">Cadastrar pizza</a></p>
+	  
 	</div>	
 </body>
 </html>

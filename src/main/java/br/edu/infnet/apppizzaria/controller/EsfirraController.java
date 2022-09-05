@@ -1,5 +1,6 @@
 package br.edu.infnet.apppizzaria.controller;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.apppizzaria.model.domain.Esfirra;
 import br.edu.infnet.apppizzaria.test.AppImpressao;
@@ -20,6 +22,7 @@ public class EsfirraController {
 	
 	public static void incluir(Esfirra esfirra) {
 		esfirra.setId(id++);
+		esfirra.setData(LocalDateTime.now());
 		mapaEsfirra.put(esfirra.getId(), esfirra);
 		
 		AppImpressao.relatorio("Esfirra de " + esfirra.getSabor(), esfirra);
@@ -38,6 +41,18 @@ public class EsfirraController {
 		model.addAttribute("listagem", obterLista());
 		
 		return "esfirra/lista";
+	}
+	
+	@GetMapping("/esfirra")
+	public String telaCadastro() {
+		return "esfirra/cadastro";
+	}
+	
+	@PostMapping("/esfirra/incluir")
+	public String incluirEsfirra(Esfirra esfirra) {
+		incluir(esfirra);
+		
+		return "redirect:/esfirra/lista";
 	}
 	
 	@GetMapping("/esfirra/{id}/excluir")

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.apppizzaria.model.domain.Cliente;
 import br.edu.infnet.apppizzaria.test.AppImpressao;
@@ -38,6 +39,18 @@ public class ClienteController {
 		model.addAttribute("listagem", obterLista());
 		
 		return "cliente/lista";
+	}
+	
+	@GetMapping("/cliente")
+	public String telaCadastro() {
+		return "cliente/cadastro";
+	}
+	
+	@PostMapping("/cliente/incluir")
+	public String incluirCliente(Cliente cliente) {
+		incluir(cliente);
+		
+		return "redirect:/cliente/lista";
 	}
 	
 	@GetMapping("/cliente/{id}/excluir")

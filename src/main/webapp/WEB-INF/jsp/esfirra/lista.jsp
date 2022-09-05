@@ -41,6 +41,8 @@
 		  </tbody>
 	  </table>
 	  
+	  <p><a href="/esfirra">Cadastrar esfirra</a></p>
+	  
 	</div>	
 </body>
 </html>

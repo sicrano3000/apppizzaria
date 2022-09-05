@@ -41,6 +41,8 @@
 		  </tbody>
 	  </table>
 	  
+	  <p><a href="/espaguete">Cadastrar espaguete</a></p>
+	  
 	</div>	
 </body>
 </html>
