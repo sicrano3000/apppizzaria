@@ -28,6 +28,7 @@ public class Usuario implements IPrinter {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
 	@Override
 	public void impressao() {
 		System.out.println("#usuario");

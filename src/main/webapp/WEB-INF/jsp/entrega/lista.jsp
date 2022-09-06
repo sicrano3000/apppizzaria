@@ -43,8 +43,6 @@
 	    </tbody>
 	  </table>
 	  
-	  <p><a href="/entrega">Cadastrar entrega</a></p>
-	  
 	</div>	
 </body>
 </html>
