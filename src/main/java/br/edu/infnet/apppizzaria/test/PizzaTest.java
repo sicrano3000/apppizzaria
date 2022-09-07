@@ -6,17 +6,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.apppizzaria.controller.PizzaController;
 import br.edu.infnet.apppizzaria.model.domain.Pizza;
 import br.edu.infnet.apppizzaria.model.exception.BordaNuloException;
 import br.edu.infnet.apppizzaria.model.exception.ValorNegativoException;
+import br.edu.infnet.apppizzaria.model.service.PizzaService;
 
 @Component
 public class PizzaTest implements ApplicationRunner {
+	
+	@Autowired
+	private PizzaService pizzaService;
 
 	@Override
 	public void run(ApplicationArguments args) {
@@ -46,7 +50,7 @@ public class PizzaTest implements ApplicationRunner {
 						pizza.setValor(Double.valueOf(campo[3]));
 						pizza.setDescricao(campo[4]);
 						pizza.setData(LocalDateTime.now());
-						PizzaController.incluir(pizza);
+						pizzaService.incluir(pizza);
 						
 						pizza.calcularVenda();
 					} catch (BordaNuloException b) {

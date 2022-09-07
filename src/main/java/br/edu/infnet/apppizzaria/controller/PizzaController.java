@@ -1,10 +1,6 @@
 package br.edu.infnet.apppizzaria.controller;
 
-import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,33 +8,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.apppizzaria.model.domain.Pizza;
-import br.edu.infnet.apppizzaria.test.AppImpressao;
+import br.edu.infnet.apppizzaria.model.service.PizzaService;
 
 @Controller
 public class PizzaController {
 	
-	private static Map<Integer, Pizza> mapaPizza = new HashMap<>();
-	private static Integer id = 1;
-	
-	public static void incluir(Pizza pizza) {
-		pizza.setId(id++);
-		pizza.setData(LocalDateTime.now());
-		mapaPizza.put(pizza.getId(), pizza);
-		
-		AppImpressao.relatorio("Pizza de " + pizza.getSabor(), pizza);
-	}
-	
-	public static Collection<Pizza> obterLista() {
-		return mapaPizza.values();
-	}
-	
-	public static void excluir(Integer id) {
-		mapaPizza.remove(id);
-	}
+	@Autowired
+	private PizzaService pizzaService;
 
 	@GetMapping("/pizza/lista")
 	public String telaLista(Model model) {		
-		model.addAttribute("listagem", obterLista());
+		model.addAttribute("listagem", pizzaService.obterLista());
 		
 		return "pizza/lista";
 	}
@@ -50,14 +30,14 @@ public class PizzaController {
 	
 	@PostMapping("/pizza/incluir")
 	public String incluirPizza(Pizza pizza) {
-		incluir(pizza);
+		pizzaService.incluir(pizza);
 		
 		return "redirect:/pizza/lista";
 	}
 	
 	@GetMapping("/pizza/{id}/excluir")
 	public String exclusao(@PathVariable Integer id) {
-		excluir(id);
+		pizzaService.excluir(id);
 		
 		return "redirect:/pizza/lista";
 	}

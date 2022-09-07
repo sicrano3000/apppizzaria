@@ -1,10 +1,6 @@
 package br.edu.infnet.apppizzaria.controller;
 
-import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,33 +8,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.apppizzaria.model.domain.Esfirra;
-import br.edu.infnet.apppizzaria.test.AppImpressao;
+import br.edu.infnet.apppizzaria.model.service.EsfirraService;
 
 @Controller
 public class EsfirraController {
 	
-	private static Map<Integer, Esfirra> mapaEsfirra = new HashMap<>();
-	private static Integer id = 1;
-	
-	public static void incluir(Esfirra esfirra) {
-		esfirra.setId(id++);
-		esfirra.setData(LocalDateTime.now());
-		mapaEsfirra.put(esfirra.getId(), esfirra);
-		
-		AppImpressao.relatorio("Esfirra de " + esfirra.getSabor(), esfirra);
-	}
-	
-	public static Collection<Esfirra> obterLista() {
-		return mapaEsfirra.values();
-	}
-	
-	public static void excluir(Integer id) {
-		mapaEsfirra.remove(id);
-	}
+	@Autowired
+	private EsfirraService esfirraService;
 
 	@GetMapping("/esfirra/lista")
 	public String telaLista(Model model) {
-		model.addAttribute("listagem", obterLista());
+		model.addAttribute("listagem", esfirraService.obterLista());
 		
 		return "esfirra/lista";
 	}
@@ -50,14 +30,14 @@ public class EsfirraController {
 	
 	@PostMapping("/esfirra/incluir")
 	public String incluirEsfirra(Esfirra esfirra) {
-		incluir(esfirra);
+		esfirraService.incluir(esfirra);
 		
 		return "redirect:/esfirra/lista";
 	}
 	
 	@GetMapping("/esfirra/{id}/excluir")
 	public String exclusao(@PathVariable Integer id) {
-		excluir(id);
+		esfirraService.excluir(id);
 		
 		return "redirect:/esfirra/lista";
 	}

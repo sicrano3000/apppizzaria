@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.apppizzaria.controller.EntregaController;
 import br.edu.infnet.apppizzaria.model.domain.Cliente;
 import br.edu.infnet.apppizzaria.model.domain.Entrega;
 import br.edu.infnet.apppizzaria.model.domain.Esfirra;
@@ -20,9 +20,13 @@ import br.edu.infnet.apppizzaria.model.domain.Pizza;
 import br.edu.infnet.apppizzaria.model.exception.CPFInvalidoException;
 import br.edu.infnet.apppizzaria.model.exception.CarrinhoVazioException;
 import br.edu.infnet.apppizzaria.model.exception.ClienteNuloException;
+import br.edu.infnet.apppizzaria.model.service.EntregaService;
 
 @Component
 public class EntregaTest implements ApplicationRunner {
+	
+	@Autowired
+	private EntregaService entregaService;
 	
 	@Override
 	public void run(ApplicationArguments args) {
@@ -78,7 +82,7 @@ public class EntregaTest implements ApplicationRunner {
 						var entrega = new Entrega(cliente, produtoE1);
 						entrega.setEndereco(campo[3]);
 						entrega.setTempoPreparo(Integer.valueOf(campo[4]));
-						EntregaController.incluir(entrega);
+						entregaService.incluir(entrega);
 					} catch (CPFInvalidoException e) {
 						System.out.println("[ERROR - CLIENTE] -> " + e.getMessage());
 					} catch (ClienteNuloException e) {

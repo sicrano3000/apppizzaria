@@ -6,16 +6,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.apppizzaria.controller.EspagueteController;
 import br.edu.infnet.apppizzaria.model.domain.Espaguete;
 import br.edu.infnet.apppizzaria.model.exception.ValorNegativoException;
+import br.edu.infnet.apppizzaria.model.service.EspagueteService;
 
 @Component
 public class EspagueteTest implements ApplicationRunner {
+	
+	@Autowired
+	private EspagueteService espagueteService;
 
 	@Override
 	public void run(ApplicationArguments args) {
@@ -45,7 +49,7 @@ public class EspagueteTest implements ApplicationRunner {
 						espaguete.setValor(Double.valueOf(campo[3]));
 						espaguete.setDescricao(campo[4]);
 						espaguete.setData(LocalDateTime.now());
-						EspagueteController.incluir(espaguete);
+						espagueteService.incluir(espaguete);
 						
 						espaguete.calcularVenda();
 					} catch (ValorNegativoException v) {

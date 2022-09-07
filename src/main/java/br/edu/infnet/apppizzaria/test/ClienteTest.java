@@ -5,16 +5,20 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.apppizzaria.controller.ClienteController;
 import br.edu.infnet.apppizzaria.model.domain.Cliente;
 import br.edu.infnet.apppizzaria.model.exception.CPFInvalidoException;
+import br.edu.infnet.apppizzaria.model.service.ClienteService;
 
 @Component
 public class ClienteTest implements ApplicationRunner {
+	
+	@Autowired
+	private ClienteService clienteService;
 
 	@Override
 	public void run(ApplicationArguments args) {
@@ -38,7 +42,7 @@ public class ClienteTest implements ApplicationRunner {
 						var campo = linha.split(";");
 						
 						var cliente = new Cliente(campo[0], campo[1], campo[2]);
-						ClienteController.incluir(cliente);
+						clienteService.incluir(cliente);
 					} catch (CPFInvalidoException e) {
 						System.out.println("[ERROR - CLIENTE] -> " + e.getMessage());
 					}

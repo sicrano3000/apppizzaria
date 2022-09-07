@@ -6,17 +6,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.apppizzaria.controller.EsfirraController;
 import br.edu.infnet.apppizzaria.model.domain.Esfirra;
 import br.edu.infnet.apppizzaria.model.exception.BordaNuloException;
 import br.edu.infnet.apppizzaria.model.exception.ValorNegativoException;
+import br.edu.infnet.apppizzaria.model.service.EsfirraService;
 
 @Component
 public class EsfirraTest implements ApplicationRunner {
+	
+	@Autowired
+	private EsfirraService esfirraService;
 
 	@Override
 	public void run(ApplicationArguments args) {
@@ -46,7 +50,7 @@ public class EsfirraTest implements ApplicationRunner {
 						esfirra.setValor(Double.valueOf(campo[3]));
 						esfirra.setDescricao(campo[4]);
 						esfirra.setData(LocalDateTime.now());
-						EsfirraController.incluir(esfirra);
+						esfirraService.incluir(esfirra);
 						
 						esfirra.calcularVenda();
 					} catch (BordaNuloException b) {
