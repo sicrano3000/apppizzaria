@@ -11,9 +11,30 @@
 	<div class="container mt-3">
 		<c:import url="/WEB-INF/jsp/menu.jsp" />
 
-		<h2>AppPizzaria</h2>
-		<p>Projeto de Gestão de Pizzas e Massas</p>
-	  
+		<h2>${projeto.nome}</h2>
+		<p>${projeto.descricao}</p>
+		
+		<c:forEach var="classe" items="${projeto.classes}">
+		<h3>Classe: ${classe.nome}</h3>	              
+		  <table class="table table-striped">
+		    <thead>
+				<tr>
+					<th>Atributo</th>
+					<th>Tipo</th>
+					<th>Descrição</th>
+				</tr>
+		    </thead>
+		    <tbody>
+		    	<c:forEach var="atributo" items="${classe.atributos}">
+					<tr>
+						<td>${atributo.nome}</td>
+						<td>${atributo.tipo}</td>
+						<td>${atributo.descricao}</td>
+					</tr>
+				</c:forEach>
+		    </tbody>
+		  </table>
+	    </c:forEach>
 	</div>	
 </body>
 </html>

@@ -1,0 +1,25 @@
+P;AppPizzaria;Projeto de Gestão de Pizzas e Massas
+C;Cliente
+A;Nome;String;Nome do Cliente
+A;Cpf;String;Cpf do Cliente
+A;Email;String;E-mail do Cliente
+C;Entrega
+A;Endereço;String;Endereço do Cliente
+A;Tempo de preparo;LocalDateTime;Tempo necessário para o preparo
+A;Previsão de entrega;LocalDateTime;Previsão de tempo para a entrega
+C;Esfirra
+A;Descricao;String;Descrição adicional da Esfirra
+A;Valor;Double;Valor da Esfirra
+A;Sabor;String;Sabor escolhido da Esfirra
+C;Espaguete
+A;Descricao;String;Descrição adicional da Espaguete
+A;Valor;Double;Valor da Espaguete
+A;Sabor;String;Sabor escolhido da Espaguete
+C;Pizza
+A;Descricao;String;Descrição adicional da Pizza
+A;Valor;Double;Valor da Pizza
+A;Sabor;String;Sabor escolhido da Pizza
+C;Usuario
+A;Nome;String;Nome do usuário
+A;Email;String;E-mail do usuário
+A;Senha;String;Senha do usuário
