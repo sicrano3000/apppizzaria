@@ -29,32 +29,35 @@ public class EspagueteTest implements ApplicationRunner {
 		System.out.println("#espaguete");
 
 		final var diretorio = "C:\\Projetos_Estudos\\";
-		final var file = "espaguete.txt";
+		final var file = "produtos.txt";
 		
 		try {
 			try {
 				FileReader fileReader = new FileReader(diretorio.concat(file));
 				BufferedReader leitura = new BufferedReader(fileReader);
 
-				var linha = leitura.readLine();
+				var linha = leitura.readLine();				
 				while(linha != null) {
-
-					try {						
-						var campo = linha.split(";");
-						
-						var espaguete = new Espaguete();
-						espaguete.setBorda(campo[0]);
-						espaguete.setSabor(campo[1]);
-						espaguete.setTipo(campo[2]);
-						espaguete.setValor(Double.valueOf(campo[3]));
-						espaguete.setDescricao(campo[4]);
-						espaguete.setData(LocalDateTime.now());
-						espagueteService.incluir(espaguete);
-						
-						espaguete.calcularVenda();
-					} catch (ValorNegativoException v) {
-						System.out.println("[ERROR - Espaguete] -> " + v.getMessage());
+					
+					var campo = linha.split(";");
+				
+					if("espaguete".equalsIgnoreCase(campo[0])) {
+						try {						
+							var espaguete = new Espaguete();
+							espaguete.setBorda(campo[1]);
+							espaguete.setSabor(campo[2]);
+							espaguete.setTipo(campo[3]);
+							espaguete.setValor(Double.valueOf(campo[4]));
+							espaguete.setDescricao(campo[5]);
+							espaguete.setData(LocalDateTime.now());
+							espagueteService.incluir(espaguete);
+							
+							espaguete.calcularVenda();
+						} catch (ValorNegativoException v) {
+							System.out.println("[ERROR - Espaguete] -> " + v.getMessage());
+						}
 					}
+					
 					
 					linha = leitura.readLine();
 				}

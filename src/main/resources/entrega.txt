@@ -1,3 +1,0 @@
-Jonathan;jonathan@gmail.com;11111111111;Rua A;30
-Thairine;thairine@gmail.com;22222222222;Rua B;40
-Carol;carol@gmail.com;33333333333;Rua C;50

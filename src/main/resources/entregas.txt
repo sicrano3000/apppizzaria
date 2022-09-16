@@ -1,0 +1,15 @@
+cliente;Jonathan;jonathan@gmail.com;11111111111
+pizza;Catupiry;Pizza de 4 queijos;Massa Fina;60;Com muito queijo
+esfirra;Calabresa;Esfirra de Bacon;Massa pobre;15;Com oregano
+espaguete;;Espaguete à Bolonhesa;Massa Grossa;55;Com muito molho
+entrega;Jonathan;jonathan@gmail.com;11111111111;Rua A;30
+cliente;Thairine;thairine@gmail.com;22222222222
+pizza;Tradicional;Pizza de calabresa;Massa Grossa;50;Sem cebola
+esfirra;Tradicional;Esfirra de Chocolate;Massa grossa;10;Com granulado
+espaguete;;Espaguete de Frango;Ao Dente;50;Com milho
+entrega;Thairine;thairine@gmail.com;22222222222;Rua B;40
+cliente;Carol;carol@gmail.com;33333333333
+pizza;Cheddar;Pizza de Frango com catupiry;Massa Fina;55;Sem milho
+esfirra;Cheddar;Esfirra de Frango;Massa fina;12;Sem milho
+espaguete;;Espaguete aos 4 Queijos;Massa Fina;60;Com alho torrado
+entrega;Carol;carol@gmail.com;33333333333;Rua C;50

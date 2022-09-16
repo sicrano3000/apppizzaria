@@ -30,7 +30,7 @@ public class EsfirraTest implements ApplicationRunner {
 		System.out.println("#esfirra");
 		
 		final var diretorio = "C:\\Projetos_Estudos\\";
-		final var file = "esfirra.txt";
+		final var file = "produtos.txt";
 		
 		try {
 			try {
@@ -39,24 +39,26 @@ public class EsfirraTest implements ApplicationRunner {
 
 				var linha = leitura.readLine();
 				while(linha != null) {
-
-					try {						
-						var campo = linha.split(";");
-						
-						var esfirra = new Esfirra();
-						esfirra.setBorda(campo[0]);
-						esfirra.setSabor(campo[1]);
-						esfirra.setTipo(campo[2]);
-						esfirra.setValor(Double.valueOf(campo[3]));
-						esfirra.setDescricao(campo[4]);
-						esfirra.setData(LocalDateTime.now());
-						esfirraService.incluir(esfirra);
-						
-						esfirra.calcularVenda();
-					} catch (BordaNuloException b) {
-						System.out.println("[ERROR - ESFIRRA] -> " + b.getMessage());
-					} catch (ValorNegativoException v) {
-						System.out.println("[ERROR - ESFIRRA] -> " + v.getMessage());
+					
+					var campo = linha.split(";");
+					
+					if("esfirra".equalsIgnoreCase(campo[0])) {
+						try {
+							var esfirra = new Esfirra();
+							esfirra.setBorda(campo[1]);
+							esfirra.setSabor(campo[2]);
+							esfirra.setTipo(campo[3]);
+							esfirra.setValor(Double.valueOf(campo[4]));
+							esfirra.setDescricao(campo[5]);
+							esfirra.setData(LocalDateTime.now());
+							esfirraService.incluir(esfirra);
+							
+							esfirra.calcularVenda();
+						} catch (BordaNuloException b) {
+							System.out.println("[ERROR - ESFIRRA] -> " + b.getMessage());
+						} catch (ValorNegativoException v) {
+							System.out.println("[ERROR - ESFIRRA] -> " + v.getMessage());
+						}
 					}
 					
 					linha = leitura.readLine();

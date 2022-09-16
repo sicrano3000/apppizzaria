@@ -30,7 +30,7 @@ public class PizzaTest implements ApplicationRunner {
 		System.out.println("#pizza");
 		
 		final var diretorio = "C:\\Projetos_Estudos\\";
-		final var file = "pizza.txt";
+		final var file = "produtos.txt";
 		
 		try {
 			try {
@@ -39,26 +39,27 @@ public class PizzaTest implements ApplicationRunner {
 
 				var linha = leitura.readLine();
 				while(linha != null) {
-
-					try {						
-						var campo = linha.split(";");
-						
-						var pizza = new Pizza();
-						pizza.setBorda(campo[0]);
-						pizza.setSabor(campo[1]);
-						pizza.setTipo(campo[2]);
-						pizza.setValor(Double.valueOf(campo[3]));
-						pizza.setDescricao(campo[4]);
-						pizza.setData(LocalDateTime.now());
-						pizzaService.incluir(pizza);
-						
-						pizza.calcularVenda();
-					} catch (BordaNuloException b) {
-						System.out.println("[ERROR - PIZZA] -> " + b.getMessage());
-					} catch (ValorNegativoException v) {
-						System.out.println("[ERROR - PIZZA] -> " + v.getMessage());
-					}
 					
+					var campo = linha.split(";");
+					
+					if("pizza".equalsIgnoreCase(campo[0])) {
+						try {
+							var pizza = new Pizza();
+							pizza.setBorda(campo[1]);
+							pizza.setSabor(campo[2]);
+							pizza.setTipo(campo[3]);
+							pizza.setValor(Double.valueOf(campo[4]));
+							pizza.setDescricao(campo[5]);
+							pizza.setData(LocalDateTime.now());
+							pizzaService.incluir(pizza);
+							
+							pizza.calcularVenda();
+						} catch (BordaNuloException b) {
+							System.out.println("[ERROR - PIZZA] -> " + b.getMessage());
+						} catch (ValorNegativoException v) {
+							System.out.println("[ERROR - PIZZA] -> " + v.getMessage());
+						}
+					}
 					linha = leitura.readLine();
 				}
 				

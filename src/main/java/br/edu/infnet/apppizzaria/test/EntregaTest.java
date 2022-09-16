@@ -5,7 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -14,9 +16,7 @@ import org.springframework.stereotype.Component;
 
 import br.edu.infnet.apppizzaria.model.domain.Cliente;
 import br.edu.infnet.apppizzaria.model.domain.Entrega;
-import br.edu.infnet.apppizzaria.model.domain.Esfirra;
 import br.edu.infnet.apppizzaria.model.domain.Espaguete;
-import br.edu.infnet.apppizzaria.model.domain.Pizza;
 import br.edu.infnet.apppizzaria.model.exception.CPFInvalidoException;
 import br.edu.infnet.apppizzaria.model.exception.CarrinhoVazioException;
 import br.edu.infnet.apppizzaria.model.exception.ClienteNuloException;
@@ -35,54 +35,82 @@ public class EntregaTest implements ApplicationRunner {
 		System.out.println("");
 		System.out.println("#entrega");
 		
-		var pizza = new Pizza();
-		pizza.setBorda("Catupiry");
-		pizza.setSabor("Pizza de 4 queijos");
-		pizza.setTipo("Massa fina");
-		pizza.setValor(50.);
-		pizza.setDescricao("Com bastante queijo");
-		pizza.setData(LocalDateTime.now());
-		
-		var esfirra = new Esfirra();
-		esfirra.setBorda("Calabresa");
-		esfirra.setSabor("Esfirra de Bacon");
-		esfirra.setTipo("Massa pobre");
-		esfirra.setValor(15.);
-		esfirra.setDescricao("Com oregano");
-		esfirra.setData(LocalDateTime.now());
-		
-		var espaguete = new Espaguete();
-		espaguete.setBorda("");
-		espaguete.setSabor("Espaguete à Bolonhesa");
-		espaguete.setTipo("Massa fina");
-		espaguete.setValor(55.);
-		espaguete.setDescricao("Com muito molho");
-		espaguete.setData(LocalDateTime.now());
-		
-		var produtoE1 = new HashSet<>();
-		produtoE1.add(pizza);
-		produtoE1.add(esfirra);
-		produtoE1.add(espaguete);
-		
 		final var diretorio = "C:\\Projetos_Estudos\\";
-		final var file = "entrega.txt";
+		final var file = "entregas.txt";
 		
 		try {
 			try {
 				FileReader fileReader = new FileReader(diretorio.concat(file));
 				BufferedReader leitura = new BufferedReader(fileReader);
 
-				var linha = leitura.readLine();
-				while(linha != null) {
+				Set<Object> produtos = null;
+				var entregas = new ArrayList<Entrega>();
+				var linha = leitura.readLine();	
+				Cliente cliente = null;
+				
+				while(linha != null) {					
 
-					try {						
-						var campo = linha.split(";");
+					var campo = linha.split(";");
+					
+					try {
+						switch (campo[0]) {
+							case "cliente":
+								produtos = new HashSet<>();
+								cliente = new Cliente(campo[1], campo[2], campo[3]);
+								
+								break;
+							case "espaguete":
+								var espaguete = new Espaguete();
+								espaguete.setBorda(campo[1]);
+								espaguete.setSabor(campo[2]);
+								espaguete.setTipo(campo[3]);
+								espaguete.setValor(Double.valueOf(campo[4]));
+								espaguete.setDescricao(campo[5]);
+								espaguete.setData(LocalDateTime.now());
+								
+								produtos.add(espaguete);
+								
+								break;
+							case "esfirra":
+								var esfirra = new Espaguete();
+								esfirra.setBorda(campo[1]);
+								esfirra.setSabor(campo[2]);
+								esfirra.setTipo(campo[3]);
+								esfirra.setValor(Double.valueOf(campo[4]));
+								esfirra.setDescricao(campo[5]);
+								esfirra.setData(LocalDateTime.now());
+								
+								produtos.add(esfirra);
+								
+								break;
+							case "pizza":
+								var pizza = new Espaguete();
+								pizza.setBorda(campo[1]);
+								pizza.setSabor(campo[2]);
+								pizza.setTipo(campo[3]);
+								pizza.setValor(Double.valueOf(campo[4]));
+								pizza.setDescricao(campo[5]);
+								pizza.setData(LocalDateTime.now());
+								
+								produtos.add(pizza);
+								
+								break;
+							case "entrega":
+								
+								var entrega = new Entrega(cliente, produtos);
+								entrega.setEndereco(campo[4]);
+								entrega.setTempoPreparo(Integer.valueOf(campo[5]));
+								
+								entregas.add(entrega);
+								
+								break;
+		
+							default:
+								break;
+						}
 						
-						var cliente = new Cliente(campo[0], campo[1], campo[2]);
-						var entrega = new Entrega(cliente, produtoE1);
-						entrega.setEndereco(campo[3]);
-						entrega.setTempoPreparo(Integer.valueOf(campo[4]));
-						entregaService.incluir(entrega);
+						linha = leitura.readLine();
+
 					} catch (CPFInvalidoException e) {
 						System.out.println("[ERROR - CLIENTE] -> " + e.getMessage());
 					} catch (ClienteNuloException e) {
@@ -91,8 +119,9 @@ public class EntregaTest implements ApplicationRunner {
 						System.out.println("[ERROR - CARRINHO] -> " + e.getMessage());
 					}
 					
-					linha = leitura.readLine();
 				}
+				
+				entregas.forEach(e -> entregaService.incluir(e));
 				
 				leitura.close();
 				fileReader.close();
