@@ -41,7 +41,7 @@ public class AppController {
 		var usuario = usuarioService.validar(email, senha);
 		
 		if (usuario != null) {
-			model.addAttribute("user", usuario.getNome());
+			model.addAttribute("user", usuario);
 			
 			return "home";
 		}

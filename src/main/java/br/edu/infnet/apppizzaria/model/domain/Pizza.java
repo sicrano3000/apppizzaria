@@ -2,9 +2,14 @@ package br.edu.infnet.apppizzaria.model.domain;
 
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import br.edu.infnet.apppizzaria.model.exception.BordaNuloException;
 import br.edu.infnet.apppizzaria.model.exception.ValorNegativoException;
 
+@Entity
+@Table(name = "TB_PIZZA")
 public class Pizza extends Massa {
 	
 	private String descricao;

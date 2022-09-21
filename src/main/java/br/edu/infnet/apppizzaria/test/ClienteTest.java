@@ -11,6 +11,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.apppizzaria.model.domain.Cliente;
+import br.edu.infnet.apppizzaria.model.domain.Usuario;
 import br.edu.infnet.apppizzaria.model.exception.CPFInvalidoException;
 import br.edu.infnet.apppizzaria.model.service.ClienteService;
 
@@ -22,6 +23,9 @@ public class ClienteTest implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) {
+		var usuario = new Usuario();
+		usuario.setId(1);
+		
 		System.out.println("");
 		System.out.println("----------------------------------------------------------");
 		System.out.println("");
@@ -42,6 +46,7 @@ public class ClienteTest implements ApplicationRunner {
 						var campo = linha.split(";");
 						
 						var cliente = new Cliente(campo[0], campo[1], campo[2]);
+						cliente.setUsuario(usuario);
 						clienteService.incluir(cliente);
 					} catch (CPFInvalidoException e) {
 						System.out.println("[ERROR - CLIENTE] -> " + e.getMessage());
