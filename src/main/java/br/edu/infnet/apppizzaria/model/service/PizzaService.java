@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.apppizzaria.model.domain.Pizza;
+import br.edu.infnet.apppizzaria.model.domain.Usuario;
 import br.edu.infnet.apppizzaria.model.repository.PizzaRepository;
 import br.edu.infnet.apppizzaria.test.AppImpressao;
 
@@ -26,6 +27,10 @@ public class PizzaService {
 	
 	public Collection<Pizza> obterLista() {
 		return (Collection<Pizza>) pizzaRepository.findAll();
+	}
+	
+	public Collection<Pizza> obterLista(Usuario usuario) {
+		return (Collection<Pizza>) pizzaRepository.findAll(usuario.getId());
 	}
 	
 	public void excluir(Integer id) {

@@ -26,6 +26,7 @@ public class UsuarioTest implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		usuario = new Usuario();
+		usuario.setId(1);
 		usuario.setNome("Admin");
 		usuario.setEmail("admin@admin.com");
 		usuario.setSenha("123");

@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.apppizzaria.model.domain.Pizza;
+import br.edu.infnet.apppizzaria.model.domain.Usuario;
 import br.edu.infnet.apppizzaria.model.service.PizzaService;
 
 @Controller
@@ -17,8 +19,8 @@ public class PizzaController {
 	private PizzaService pizzaService;
 
 	@GetMapping("/pizza/lista")
-	public String telaLista(Model model) {		
-		model.addAttribute("listagem", pizzaService.obterLista());
+	public String telaLista(Model model, @SessionAttribute("user") Usuario usuario) {		
+		model.addAttribute("listagem", pizzaService.obterLista(usuario));
 		
 		return "pizza/lista";
 	}
@@ -29,7 +31,8 @@ public class PizzaController {
 	}
 	
 	@PostMapping("/pizza/incluir")
-	public String incluirPizza(Pizza pizza) {
+	public String incluirPizza(Pizza pizza, @SessionAttribute("user") Usuario usuario) {
+		pizza.setUsuario(usuario);
 		pizzaService.incluir(pizza);
 		
 		return "redirect:/pizza/lista";

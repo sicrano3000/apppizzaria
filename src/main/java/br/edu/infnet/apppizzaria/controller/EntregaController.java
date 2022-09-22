@@ -6,7 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import br.edu.infnet.apppizzaria.model.domain.Entrega;
+import br.edu.infnet.apppizzaria.model.domain.Usuario;
 import br.edu.infnet.apppizzaria.model.service.ClienteService;
 import br.edu.infnet.apppizzaria.model.service.EntregaService;
 import br.edu.infnet.apppizzaria.service.ProdutoService;
@@ -24,9 +27,9 @@ public class EntregaController {
 	private ProdutoService produtoService;
 	
 	@GetMapping("/entrega")
-	public String telaCadastro(Model model) {
-		model.addAttribute("clientes", clienteService.obterLista());
-		model.addAttribute("produtos", produtoService.obterLista());
+	public String telaCadastro(Model model, @SessionAttribute("user") Usuario usuario) {
+		model.addAttribute("clientes", clienteService.obterLista(usuario));
+		model.addAttribute("produtos", produtoService.obterLista(usuario));
 		
 		return "entrega/cadastro";
 	}
@@ -46,7 +49,10 @@ public class EntregaController {
 	}
 	
 	@PostMapping("/entrega/incluir")
-	public String exclusao() {
+	public String inclusao(Entrega entrega, @SessionAttribute("user") Usuario usuario) {
+		entrega.setUsuario(usuario);
+		entregaService.incluir(entrega);
+		
 		return "redirect:/entrega/lista";
 	}
 

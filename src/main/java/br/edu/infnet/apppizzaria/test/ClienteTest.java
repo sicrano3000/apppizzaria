@@ -8,6 +8,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.apppizzaria.model.domain.Cliente;
@@ -16,6 +17,7 @@ import br.edu.infnet.apppizzaria.model.exception.CPFInvalidoException;
 import br.edu.infnet.apppizzaria.model.service.ClienteService;
 
 @Component
+@Order(2)
 public class ClienteTest implements ApplicationRunner {
 	
 	@Autowired

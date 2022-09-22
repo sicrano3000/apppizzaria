@@ -28,14 +28,14 @@
 			  <div class="mb-3 mt-3">
 			    <select name="cliente" id="cliente">
 				    <c:forEach var="c" items="${clientes}">
-					  <option value="${c.nome}">${c.nome}</option>
+					  <option value="${c}">${c.nome}</option>
 				  	</c:forEach>
 				</select>
 			  </div>			  
 			  <div class="mb-3">
 				  <c:forEach var="p" items="${produtos}">
-				    <input type="checkbox" id="produto" name="produto" value="${p.sabor}">
-					<label for="produto"> ${p.sabor}</label><br>
+				    <input type="checkbox" id="massas" name="massas" value="${p.sabor}">
+					<label for="massas"> ${p}</label><br>
 			  	  </c:forEach>
 			  </div>
 			  <button type="submit" class="btn btn-primary">Cadastrar</button>

@@ -22,6 +22,9 @@
 					<a class="nav-link" href="/espaguete/lista">Espaguete</a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link" href="/massa/lista">Massa</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="/entrega/lista">Entrega</a>
 				</li>
 				<li class="nav-item">

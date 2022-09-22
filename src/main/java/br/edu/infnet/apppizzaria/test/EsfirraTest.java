@@ -9,14 +9,17 @@ import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.apppizzaria.model.domain.Esfirra;
+import br.edu.infnet.apppizzaria.model.domain.Usuario;
 import br.edu.infnet.apppizzaria.model.exception.BordaNuloException;
 import br.edu.infnet.apppizzaria.model.exception.ValorNegativoException;
 import br.edu.infnet.apppizzaria.model.service.EsfirraService;
 
 @Component
+@Order(5)
 public class EsfirraTest implements ApplicationRunner {
 	
 	@Autowired
@@ -24,6 +27,9 @@ public class EsfirraTest implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) {
+		var usuario = new Usuario();
+		usuario.setId(1);
+		
 		System.out.println("");
 		System.out.println("----------------------------------------------------------");
 		System.out.println("");
@@ -51,6 +57,7 @@ public class EsfirraTest implements ApplicationRunner {
 							esfirra.setValor(Double.valueOf(campo[4]));
 							esfirra.setDescricao(campo[5]);
 							esfirra.setData(LocalDateTime.now());
+							esfirra.setUsuario(usuario);
 							esfirraService.incluir(esfirra);
 							
 							esfirra.calcularVenda();

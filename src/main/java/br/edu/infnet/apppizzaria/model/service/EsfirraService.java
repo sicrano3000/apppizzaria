@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.apppizzaria.model.domain.Esfirra;
+import br.edu.infnet.apppizzaria.model.domain.Usuario;
 import br.edu.infnet.apppizzaria.model.repository.EsfirraRepository;
 import br.edu.infnet.apppizzaria.test.AppImpressao;
 
@@ -26,6 +27,10 @@ public class EsfirraService {
 	
 	public Collection<Esfirra> obterLista() {
 		return (Collection<Esfirra>) esfirraRepository.findAll();
+	}
+	
+	public Collection<Esfirra> obterLista(Usuario usuario) {
+		return (Collection<Esfirra>) esfirraRepository.findAll(usuario.getId());
 	}
 	
 	public void excluir(Integer id) {

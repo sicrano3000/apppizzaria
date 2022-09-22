@@ -27,7 +27,27 @@ public class Usuario implements IPrinter {
 	@OneToMany
 	@JoinColumn(name = "idUsuario")
 	private List<Cliente> clientes;
+	
+	@OneToMany
+	@JoinColumn(name = "idUsuario")
+	private List<Massa> massas;
+	
+	@OneToMany
+	@JoinColumn(name = "idUsuario")
+	private List<Entrega> entregas;
 
+	public List<Massa> getMassas() {
+		return massas;
+	}
+	public void setMassas(List<Massa> massas) {
+		this.massas = massas;
+	}
+	public List<Entrega> getEntregas() {
+		return entregas;
+	}
+	public void setEntregas(List<Entrega> entregas) {
+		this.entregas = entregas;
+	}
 	public Integer getId() {
 		return id;
 	}

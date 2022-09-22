@@ -9,13 +9,16 @@ import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.apppizzaria.model.domain.Espaguete;
+import br.edu.infnet.apppizzaria.model.domain.Usuario;
 import br.edu.infnet.apppizzaria.model.exception.ValorNegativoException;
 import br.edu.infnet.apppizzaria.model.service.EspagueteService;
 
 @Component
+@Order(4)
 public class EspagueteTest implements ApplicationRunner {
 	
 	@Autowired
@@ -23,6 +26,9 @@ public class EspagueteTest implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) {
+		var usuario = new Usuario();
+		usuario.setId(1);
+		
 		System.out.println("");
 		System.out.println("----------------------------------------------------------");
 		System.out.println("");
@@ -50,6 +56,7 @@ public class EspagueteTest implements ApplicationRunner {
 							espaguete.setValor(Double.valueOf(campo[4]));
 							espaguete.setDescricao(campo[5]);
 							espaguete.setData(LocalDateTime.now());
+							espaguete.setUsuario(usuario);
 							espagueteService.incluir(espaguete);
 							
 							espaguete.calcularVenda();

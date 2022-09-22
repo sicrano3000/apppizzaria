@@ -1,33 +1,38 @@
 package br.edu.infnet.apppizzaria.model.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.apppizzaria.model.domain.Entrega;
+import br.edu.infnet.apppizzaria.model.domain.Usuario;
+import br.edu.infnet.apppizzaria.model.repository.EntregaRepository;
 import br.edu.infnet.apppizzaria.test.AppImpressao;
 
 @Service
 public class EntregaService {
 	
-	private static Map<Integer, Entrega> mapaEntrega = new HashMap<>();
-	private static Integer id = 1;
+	@Autowired
+	private EntregaRepository entregaRepository;
 	
 	public void incluir(Entrega entrega) {
-		entrega.setId(id++);
-		mapaEntrega.put(entrega.getId(), entrega);
+		entregaRepository.save(entrega);
 		
 		AppImpressao.relatorio("Entrega para " + entrega.getEndereco(), entrega);
 	}
 	
 	public Collection<Entrega> obterLista() {
-		return mapaEntrega.values();
+		return (Collection<Entrega>) entregaRepository.findAll();
+	}
+	
+	public List<Entrega> obterLista(Usuario usuario) {
+		return entregaRepository.findAll(usuario.getId());
 	}
 	
 	public void excluir(Integer id) {
-		mapaEntrega.remove(id);
+		entregaRepository.deleteById(id);;
 	}
 
 }

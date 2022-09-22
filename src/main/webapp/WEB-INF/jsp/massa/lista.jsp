@@ -11,39 +11,29 @@
 	<div class="container mt-3">
 	  <c:import url="/WEB-INF/jsp/menu.jsp" />
 
-	  <h3>Classe: Entrega</h3>
+	  <h3>Classe: Massa</h3>	              
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
 			<th>ID</th>
-	        <th>Endereço</th>
-	        <th>Tempo de Preparo</th>
-	        <th>Previsão de Entrega</th>
-	        <th>Cliente</th>
-	        <th>Carrinho</th>
+	        <th>Sabor</th>
+	        <th>Tipo</th>
+	        <th>Data</th>
 			<th></th>
 	      </tr>
 	    </thead>
 	    <tbody>
-		  <c:forEach var="e" items="${listagem}">
+		  <c:forEach var="m" items="${listagem}">
 			<tr>
-				<td>${e.id}</td>
-				<td>${e.endereco}</td>
-				<td>${e.tempoPreparo}</td>
-				<td>${e.previsaoEntrega}</td>
-				<td>${e.cliente.nome}</td>
-				<td>
-					<c:forEach var="c" items="${e.massas}">
-						- ${c.sabor}<br />
-					</c:forEach>
-				</td>
-				<td><a href="/entrega/${e.id}/excluir">excluir</a></td>
+				<td>${m.id}</td>
+				<td>${m.sabor}</td>
+				<td>${m.tipo}</td>
+				<td>${m.data}</td>
+				<td><a href="/massa/${m.id}/excluir">excluir</a></td>
 			</tr>
 		  </c:forEach>
 	    </tbody>
 	  </table>
-	  
-	  <p><a href="/entrega">Cadastrar entrega</a></p>
 	  
 	</div>	
 </body>

@@ -6,12 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import br.edu.infnet.apppizzaria.model.domain.Pizza;
+import br.edu.infnet.apppizzaria.model.domain.Entrega;
 
 @Repository
-public interface PizzaRepository extends CrudRepository<Pizza, Integer> {
+public interface EntregaRepository extends CrudRepository<Entrega, Integer> {
 
-	@Query(value = "FROM Pizza p WHERE p.usuario.id = :usuarioId")
-	List<Pizza> findAll(Integer usuarioId);
+	@Query(value = "FROM Entrega e WHERE e.usuario.id = :usuarioId")
+	List<Entrega> findAll(Integer usuarioId);
 	
 }

@@ -9,14 +9,17 @@ import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.apppizzaria.model.domain.Pizza;
+import br.edu.infnet.apppizzaria.model.domain.Usuario;
 import br.edu.infnet.apppizzaria.model.exception.BordaNuloException;
 import br.edu.infnet.apppizzaria.model.exception.ValorNegativoException;
 import br.edu.infnet.apppizzaria.model.service.PizzaService;
 
 @Component
+@Order(3)
 public class PizzaTest implements ApplicationRunner {
 	
 	@Autowired
@@ -24,6 +27,9 @@ public class PizzaTest implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) {
+		var usuario = new Usuario();
+		usuario.setId(1);
+		
 		System.out.println("");
 		System.out.println("----------------------------------------------------------");
 		System.out.println("");
@@ -51,6 +57,7 @@ public class PizzaTest implements ApplicationRunner {
 							pizza.setValor(Double.valueOf(campo[4]));
 							pizza.setDescricao(campo[5]);
 							pizza.setData(LocalDateTime.now());
+							pizza.setUsuario(usuario);
 							pizzaService.incluir(pizza);
 							
 							pizza.calcularVenda();

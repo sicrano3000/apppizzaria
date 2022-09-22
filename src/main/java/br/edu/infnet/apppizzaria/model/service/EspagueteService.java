@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.apppizzaria.model.domain.Espaguete;
+import br.edu.infnet.apppizzaria.model.domain.Usuario;
 import br.edu.infnet.apppizzaria.model.repository.EspagueteRepository;
 import br.edu.infnet.apppizzaria.test.AppImpressao;
 
@@ -26,6 +27,10 @@ public class EspagueteService {
 	
 	public Collection<Espaguete> obterLista() {
 		return (Collection<Espaguete>) espagueteRepository.findAll();
+	}
+	
+	public Collection<Espaguete> obterLista(Usuario usuario) {
+		return (Collection<Espaguete>) espagueteRepository.findAll(usuario.getId());
 	}
 	
 	public void excluir(Integer id) {
