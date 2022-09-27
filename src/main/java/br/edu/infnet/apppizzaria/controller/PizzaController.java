@@ -17,10 +17,13 @@ public class PizzaController {
 	
 	@Autowired
 	private PizzaService pizzaService;
+	
+	private String mensagem;
 
 	@GetMapping("/pizza/lista")
 	public String telaLista(Model model, @SessionAttribute("user") Usuario usuario) {		
 		model.addAttribute("listagem", pizzaService.obterLista(usuario));
+		model.addAttribute("mensagem", mensagem);
 		
 		return "pizza/lista";
 	}
@@ -35,12 +38,20 @@ public class PizzaController {
 		pizza.setUsuario(usuario);
 		pizzaService.incluir(pizza);
 		
+		mensagem = "Inclusão da pizza " + pizza.getSabor() + " realizada com sucesso!";
+		
 		return "redirect:/pizza/lista";
 	}
 	
 	@GetMapping("/pizza/{id}/excluir")
 	public String exclusao(@PathVariable Integer id) {
-		pizzaService.excluir(id);
+		try {
+			pizzaService.excluir(id);
+			
+			mensagem = "exclusão da pizza " + id + " realizada com sucesso!";
+		} catch (Exception e) {
+			mensagem = "Impossível realizar a exclusão da pizza " + id;
+		}
 		
 		return "redirect:/pizza/lista";
 	}

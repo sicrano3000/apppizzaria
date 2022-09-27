@@ -8,6 +8,8 @@ public class Projeto implements IPrinter {
 
 	private String nome;
 	private String descricao;
+	private String aluno;
+	private String disciplina;
 	private List<Classe> classes;
 
 	public List<Classe> getClasses() {
@@ -27,11 +29,23 @@ public class Projeto implements IPrinter {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}	
+	public String getAluno() {
+		return aluno;
+	}
+	public void setAluno(String aluno) {
+		this.aluno = aluno;
+	}
+	public String getDisciplina() {
+		return disciplina;
+	}
+	public void setDisciplina(String disciplina) {
+		this.disciplina = disciplina;
 	}
 	
 	@Override
 	public void impressao() {
-		System.out.println(" - " + nome + " | " + descricao);
+		System.out.println(" - " + nome + " | " + descricao + " | " + aluno + " | " + disciplina);
 		
 		classes.forEach(classe -> classe.impressao());
 	}

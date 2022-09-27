@@ -24,6 +24,8 @@ public class AppController {
 	@Autowired
 	private AppService appService;
 	
+	private String mensagem;
+	
 	@GetMapping("/")
 	public String telaHome(Model model) {
 		model.addAttribute("projeto", appService.obterProjeto());
@@ -32,7 +34,9 @@ public class AppController {
 	}
 	
 	@GetMapping("/login")
-	public String telaLogin() {
+	public String telaLogin(Model model) {
+		model.addAttribute("mensagem", mensagem);
+		
 		return "login";
 	}
 	
@@ -46,7 +50,9 @@ public class AppController {
 			return "home";
 		}
 		
-		return "login";
+		mensagem = "Não foi possível realizar a autenticação!";
+		
+		return "redirect:/login";
 	}
 	
 	@GetMapping("/logout")

@@ -1,4 +1,4 @@
-P;AppPizzaria;Projeto de Gestão de Pizzas e Massas
+P;AppPizzaria;Projeto de Gestão de Pizzas e Massas;Jonathan Crespo;Java Web e Injeção de Dependência
 C;Cliente
 A;Nome;String;Nome do Cliente
 A;Cpf;String;Cpf do Cliente

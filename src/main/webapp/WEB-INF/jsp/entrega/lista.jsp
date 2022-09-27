@@ -12,6 +12,13 @@
 	  <c:import url="/WEB-INF/jsp/menu.jsp" />
 
 	  <h3>Classe: Entrega</h3>
+	  
+	  <c:if test="${not empty mensagem}">
+		<div class="alert alert-info">
+		  <strong>Informação!</strong> ${mensagem}
+		</div>
+	  </c:if>
+	  
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>

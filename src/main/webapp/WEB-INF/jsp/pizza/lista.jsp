@@ -11,7 +11,14 @@
 	<div class="container mt-3">
 	  <c:import url="/WEB-INF/jsp/menu.jsp" />
 
-	  <h3>Classe: Pizza</h3>	              
+	  <h3>Classe: Pizza</h3>	
+	  
+	  <c:if test="${not empty mensagem}">
+		<div class="alert alert-info">
+		  <strong>Informação!</strong> ${mensagem}
+		</div>
+	  </c:if>
+	                
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>

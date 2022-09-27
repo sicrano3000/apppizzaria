@@ -13,6 +13,7 @@
 
 		<h2>${projeto.nome}</h2>
 		<p>${projeto.descricao}</p>
+		<p>Aluno: ${projeto.aluno} - Disciplina: ${projeto.disciplina}</p>
 		
 		<c:forEach var="classe" items="${projeto.classes}">
 		<h3>Classe: ${classe.nome}</h3>	              

@@ -49,6 +49,8 @@ public class AppTest implements ApplicationRunner {
 						projeto = new Projeto();
 						projeto.setNome(campo[1]);
 						projeto.setDescricao(campo[2]);
+						projeto.setAluno(campo[3]);
+						projeto.setDisciplina(campo[4]);
 						projeto.setClasses(classes);
 
 						break;

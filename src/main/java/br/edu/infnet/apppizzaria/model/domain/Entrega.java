@@ -42,6 +42,7 @@ public class Entrega implements IPrinter {
 	private Set<Massa> massas;
 	
 	public Entrega() {
+		this.previsaoEntrega = LocalDateTime.now();
 	}
 	
 	public Entrega(Cliente cliente, Set<Massa> produtos) throws ClienteNuloException, CarrinhoVazioException {

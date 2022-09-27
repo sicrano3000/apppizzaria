@@ -15,17 +15,26 @@ public class MassaController {
 	
 	@Autowired
 	private MassaService massaService;
+	
+	private String mensagem;
 
 	@GetMapping("/massa/lista")
 	public String telaLista(Model model, @SessionAttribute("user") Usuario usuario) {		
 		model.addAttribute("listagem", massaService.obterLista(usuario));
+		model.addAttribute("mensagem", mensagem);
 		
 		return "massa/lista";
 	}
 	
 	@GetMapping("/massa/{id}/excluir")
 	public String exclusao(@PathVariable Integer id) {
-		massaService.excluir(id);
+		try {
+			massaService.excluir(id);
+			
+			mensagem = "exclusão da massa " + id + " realizada com sucesso!";
+		} catch (Exception e) {
+			mensagem = "Impossível realizar a exclusão da massa " + id;
+		}
 		
 		return "redirect:/massa/lista";
 	}

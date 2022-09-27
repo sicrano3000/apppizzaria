@@ -12,7 +12,13 @@
 		<c:import url="/WEB-INF/jsp/menu.jsp" />
 
 		<h2>AppPizzaria</h2>
-		<p>Projeto de Gestão de Pizzas e Massas</p>
+		<p>Projeto de Gestão de Pizzas e Massas</p>	
+	  
+	    <c:if test="${not empty mensagem}">
+		  <div class="alert alert-info">
+		    <strong>Informação!</strong> ${mensagem}
+		  </div>
+	    </c:if> 
 	  
 		<div class="container mt-3">
 			<h2></h2>
